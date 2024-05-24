@@ -16,9 +16,29 @@
 	<description>Dummy BRMS</description>
 	<properties>
 		<java.version>17</java.version>
+		<drools.version>8.44.2.Final</drools.version>
 	</properties>
 	<dependencies>
 
+		<!-- DROOLS -->
+	<dependency>
+		<groupId>org.drools</groupId>
+		<artifactId>drools-core</artifactId>
+		<version>${drools.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.kie</groupId>
+		<artifactId>kie-ci</artifactId>
+		<version>${drools.version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.drools</groupId>
+		<artifactId>drools-ruleunits-engine</artifactId>
+		<version>${drools.version}</version>
+	</dependency>
+	
+	
+	<!-- END DROOLS -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
