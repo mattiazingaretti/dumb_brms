@@ -1,13 +1,16 @@
 package org.dummy.brms.dummy_brms;
 
-import org.springframework.boot.SpringApplication;
+import org.dummy.brms.dummy_brms.config.EnvInitializer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
 public class DummyBrmsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DummyBrmsApplication.class, args);
+		new SpringApplicationBuilder(DummyBrmsApplication.class)
+			.initializers(new EnvInitializer())
+			.run(args);
 	}
 
 }

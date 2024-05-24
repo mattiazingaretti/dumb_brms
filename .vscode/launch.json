@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-DummyBrmsApplication<dummy_brms>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "org.dummy.brms.dummy_brms.DummyBrmsApplication",
+            "projectName": "dummy_brms",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
