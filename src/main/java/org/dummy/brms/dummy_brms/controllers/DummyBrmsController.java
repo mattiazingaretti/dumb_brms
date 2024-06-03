@@ -22,7 +22,7 @@ public class DummyBrmsController {
     public String echo(@RequestParam String echo){
         log.info(echo);
 
-        return droolsService.runRules(echo);
+        return droolsService.runEchoRule(echo);
     }
 
 }
