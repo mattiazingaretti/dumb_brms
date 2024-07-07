@@ -9,11 +9,7 @@ import org.drools.ruleunits.api.DataSource;
 import org.drools.ruleunits.api.DataStore;
 import org.drools.ruleunits.dsl.RuleUnitDefinition;
 import org.drools.ruleunits.dsl.RulesFactory;
-
-import org.dummy.brms.dummy_brms.models.input.Rule;
-import org.dummy.brms.dummy_brms.models.input.facts.Fact;
-
-import org.dummy.brms.dummy_brms.models.output.Output;
+import org.dummy.brms.dummy_brms.model.Fact;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,10 +18,10 @@ public class DummyDbmsRule implements RuleUnitDefinition{
 
     private final DataStore<Fact> facts;
 
-    private final DataStore<Rule> rules;
+    // private final DataStore<Rule> rules;
     
 
-    private final List<Output> results = new ArrayList<>();
+    // private final List<Output> results = new ArrayList<>();
 
 
 
@@ -42,6 +38,7 @@ public class DummyDbmsRule implements RuleUnitDefinition{
 
     @Override
     public void defineRules(RulesFactory rulesFactory) {
+        
         // rulesFactory.rule()
         //     .on(this.rules)
         //     .filter(r -> {
@@ -58,13 +55,13 @@ public class DummyDbmsRule implements RuleUnitDefinition{
     }
 
 
-    public DataStore<Fact> getFacts() {
-        return facts;
-    }
+    // public DataStore<Fact> getFacts() {
+    //     return facts;
+    // }
 
-    public DataStore<Rule> getRules() {
-        return rules;
-    }
+    // public DataStore<Rule> getRules() {
+    //     return rules;
+    // }
 
 
 
