@@ -14,10 +14,6 @@ import org.drools.ruleunits.api.DataSource;
 import org.drools.model.Index;
 import org.drools.model.Index.ConstraintType;
 import org.drools.ruleunits.api.DataStore;
-import org.dummy.brms.dummy_brms.models.factory.Constraint;
-import org.dummy.brms.dummy_brms.models.factory.DumbFact;
-import org.dummy.brms.dummy_brms.models.factory.RuleDefinition;
-import org.dummy.brms.dummy_brms.services.DumbDroolsFactory;
 import org.junit.jupiter.api.Test;
 
 @SpringBootTest
