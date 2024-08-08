@@ -2,7 +2,6 @@ package org.dummy.brms.dummy_brms.services;
 
 import java.math.BigDecimal;
 
-import org.drools.compiler.rule.builder.dialect.java.parser.JavaParser.statement_return;
 import org.dummy.brms.dummy_brms.exception.DummyGenericException;
 import org.dummy.brms.dummy_brms.exception.ErrorCode;
 import org.dummy.brms.dummy_brms.model.operands.OperandValueType;
@@ -10,7 +9,7 @@ import org.dummy.brms.dummy_brms.model.operations.BinaryOperationType;
 
 public class UtilityFunctions {
 
-    public static <T> OperandValueType getValueType(T object){
+    public static <T> OperandValueType getValueType(T object) throws DummyGenericException{
         if(object instanceof Boolean){
             return OperandValueType.BOOLEAN;
         }
@@ -20,7 +19,8 @@ public class UtilityFunctions {
         if(object instanceof BigDecimal){
             return OperandValueType.NUMERIC;
         }
-        return OperandValueType.STRING;
+        throw new DummyGenericException(ErrorCode.FAILED_TO_GET_VALUE_TYPE);
+        
     }
 
 
@@ -69,4 +69,7 @@ public class UtilityFunctions {
                 return false;
         }
     }
+
+
+    
 }

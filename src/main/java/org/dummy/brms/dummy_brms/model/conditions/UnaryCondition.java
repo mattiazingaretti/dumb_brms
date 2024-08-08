@@ -1,8 +1,10 @@
 package org.dummy.brms.dummy_brms.model.conditions;
 
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.drools.compiler.rule.builder.dialect.java.parser.JavaParser.type_return;
 import org.dummy.brms.dummy_brms.exception.DummyGenericException;
 import org.dummy.brms.dummy_brms.exception.ErrorCode;
 import org.dummy.brms.dummy_brms.model.DumbFact;
@@ -22,11 +24,16 @@ public class UnaryCondition extends Conditions{
             
         switch (operand.getType()) {
             case FACT_FIELD:
-                Object operandValue = ((FactFieldOperand)operand).getValue(facts);
-                if(! (operandValue instanceof Boolean)){
-                    throw new DummyGenericException(ErrorCode.UNARY_FIXED_FIELD_IS_NOT_BOOL);
+                List<Object> operandValues = ((FactFieldOperand)operand).getValue(facts);
+                boolean check = false;
+                for( Object o : operandValues){
+                    if(! (o instanceof Boolean)){
+                        throw new DummyGenericException(ErrorCode.UNARY_FIXED_FIELD_IS_NOT_BOOL);
+                    }
+                    check = check || (this.operation.equals( UnaryOperationTypes.IS) ?  (Boolean)o : !(Boolean)o) ;
+                    if(check){return true;}
                 }
-                return this.operation.equals( UnaryOperationTypes.IS) ?  (Boolean)operandValue : !(Boolean)operandValue ;
+                return check; 
             case FIXED_VALUE:
                 FixedValueOperand<?> fixedOperand = (FixedValueOperand<?>) operand;
                 if(! (fixedOperand.getValue() instanceof Boolean)){

@@ -2,6 +2,7 @@ package org.dummy.brms.dummy_brms.controllers;
 
 import org.dummy.brms.dummy_brms.model.dto.ExecInDTO;
 import org.dummy.brms.dummy_brms.model.dto.ExecOutDTO;
+import org.dummy.brms.dummy_brms.services.RuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,8 +20,9 @@ import lombok.extern.slf4j.Slf4j;
 public class DummyBrmsController {
 
 
+    @Autowired
+    private RuleService ruleService;
 
-    
     
     @GetMapping("/echo")
     public String echo(@RequestParam String echo){
@@ -30,12 +32,8 @@ public class DummyBrmsController {
 
     @PostMapping("/execute")
     public ExecOutDTO execute(@RequestBody ExecInDTO in) {
-        return ruleService;
+        return ruleService.executeRules(in);
     }
     
-    // @PostMapping("/execute")
-    // public ExecutionOutDto execute(@RequestBody ExecutionInDto inDto){
-    //     return droolsService.runRule(inDto);
-    // }
     
 }

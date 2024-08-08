@@ -1,6 +1,6 @@
 package org.dummy.brms.dummy_brms.exception;
 
-
+import javax.management.RuntimeErrorException;
 
 public class DummyGenericException extends Exception{
 
