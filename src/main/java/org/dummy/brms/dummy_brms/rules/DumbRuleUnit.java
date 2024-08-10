@@ -56,7 +56,7 @@ public class DumbRuleUnit implements RuleUnitDefinition{
     public void defineRules(RulesFactory rulesFactory) {
         rulesFactory.rule().on(rules).filter(r -> Arrays.stream(r.getConditions()).allMatch(cond -> {
             try {
-                return cond.evaluate(this.getFacts());
+                return cond.evaluate(this.getFacts(), cond.getFactClassName());
             } catch (DummyGenericException e) {
                 e.printStackTrace();
                 return false;

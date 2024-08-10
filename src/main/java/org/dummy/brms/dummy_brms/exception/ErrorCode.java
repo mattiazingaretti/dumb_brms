@@ -13,5 +13,6 @@ public enum ErrorCode {
     UNARY_FIXED_FIELD_IS_NOT_BOOL(500_002, "Expected Fixed field value in Unary Constraint to be a Boolean "),
     TYPE_MISMATCH_IN_BINARY_CONSTRAINT(500_003, "Type mismatch in left and right operands in binary constraint "),
     FAILED_TO_GET_FACT_FIELD_TYPE(500_004,"Expected all fact field to be the same type"),
-    FAILED_TO_GET_VALUE_TYPE(500_005,"Failed To get value Type")
+    FAILED_TO_GET_VALUE_TYPE(500_005,"Failed To get value Type"),
+    MEANINGLESS_CONSTRAINT(500_006,"Fixed values binary constraint is meaningless")
 }

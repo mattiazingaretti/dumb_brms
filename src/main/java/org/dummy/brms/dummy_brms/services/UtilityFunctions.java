@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import org.dummy.brms.dummy_brms.exception.DummyGenericException;
 import org.dummy.brms.dummy_brms.exception.ErrorCode;
+import org.dummy.brms.dummy_brms.model.operands.Operand;
+import org.dummy.brms.dummy_brms.model.operands.OperandType;
 import org.dummy.brms.dummy_brms.model.operands.OperandValueType;
 import org.dummy.brms.dummy_brms.model.operations.BinaryOperationType;
 
@@ -70,6 +72,13 @@ public class UtilityFunctions {
         }
     }
 
-
+    public static boolean isFactField(Operand left){
+        return left.getType() == OperandType.FACT_FIELD; 
+    }
+    
+    public static boolean isFixedValue(Operand left){
+        return left.getType() == OperandType.FIXED_VALUE; 
+    }
+    
     
 }

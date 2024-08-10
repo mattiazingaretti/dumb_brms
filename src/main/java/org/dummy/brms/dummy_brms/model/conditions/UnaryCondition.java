@@ -1,5 +1,6 @@
 package org.dummy.brms.dummy_brms.model.conditions;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -20,11 +21,11 @@ public class UnaryCondition extends Conditions{
 
 
     @Override
-    public boolean evaluate(Map<UUID, DumbFact> facts) throws DummyGenericException {
-            
+    public List<UUID> evaluate(Map<UUID, DumbFact> facts, String factClassName) throws DummyGenericException {
+        List<UUID> toRet = new LinkedList<>();
         switch (operand.getType()) {
             case FACT_FIELD:
-                List<Object> operandValues = ((FactFieldOperand)operand).getValue(facts);
+                Map<UUID, Object> operandValues = ((FactFieldOperand)operand).getValue(facts, factClassName);
                 boolean check = false;
                 for( Object o : operandValues){
                     if(! (o instanceof Boolean)){
@@ -42,8 +43,10 @@ public class UnaryCondition extends Conditions{
                 Boolean val = (Boolean)fixedOperand.getValue();
                 return this.operation.equals( UnaryOperationTypes.IS) ?  val : !val ;
             default:
-                return false;
-        }
+                break;
+     
+       }
+       return toRet;
     }
 
 

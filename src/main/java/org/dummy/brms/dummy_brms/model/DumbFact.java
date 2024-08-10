@@ -10,6 +10,6 @@ import lombok.Data;
 public class DumbFact {
 
     private FactField[] fields;
-    private String factName;
+    private String factClassName;
     private UUID factId;
 }

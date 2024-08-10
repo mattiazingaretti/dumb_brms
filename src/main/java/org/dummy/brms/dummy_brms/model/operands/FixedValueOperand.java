@@ -6,7 +6,6 @@ import java.util.UUID;
 
 import org.dummy.brms.dummy_brms.exception.DummyGenericException;
 import org.dummy.brms.dummy_brms.model.DumbFact;
-import org.dummy.brms.dummy_brms.model.deserializers.FactFieldDeserializer;
 import org.dummy.brms.dummy_brms.model.deserializers.FixedValueOperandDeserializers;
 import org.dummy.brms.dummy_brms.services.UtilityFunctions;
 

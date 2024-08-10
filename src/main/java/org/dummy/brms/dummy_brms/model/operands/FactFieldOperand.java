@@ -1,9 +1,11 @@
 package org.dummy.brms.dummy_brms.model.operands;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -27,9 +29,31 @@ public class FactFieldOperand extends Operand{
         return OperandType.FACT_FIELD;
     }
 
-    public List<Object> getValue(Map<UUID, DumbFact> facts) throws DummyGenericException{
+    public Map<UUID, Object> getValue(Map<UUID, DumbFact> facts,String factClassName) throws DummyGenericException{
         
-        List<Object> toRet = new LinkedList<>();
+        Map<UUID, Object> toRet = new HashMap();
+        
+        facts.values().stream().filter(f-> f.getFactClassName().equals(factClassName)).forEach(fact->{
+            List<FactField> mactchingFields = Arrays.stream(fact.getFields()).filter(field -> field.getFactFieldId().equals(this.factFieldId)).collect(Collectors.toList());
+            if(mactchingFields == null || mactchingFields.size() != 1){
+                try {
+                    throw new DummyGenericException(ErrorCode.FACT_FIELD_NOT_FOUND);
+                } catch (DummyGenericException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            toRet.put(fact.getFactId(), mactchingFields.get(0).getValue());
+            
+        });
+        
+        return toRet;    
+    }
+
+
+    private Map<UUID, Object> getValue(Map<UUID, DumbFact> facts) throws DummyGenericException{
+        
+        Map<UUID, Object> toRet = new HashMap();
         
         facts.values().forEach(fact->{
             List<FactField> mactchingFields = Arrays.stream(fact.getFields()).filter(field -> field.getFactFieldId().equals(this.factFieldId)).collect(Collectors.toList());
@@ -41,20 +65,23 @@ public class FactFieldOperand extends Operand{
                     e.printStackTrace();
                 }
             }
-            toRet.add(mactchingFields.get(0).getValue());
+            toRet.put(fact.getFactId(), mactchingFields.get(0).getValue());
+            
         });
         
         return toRet;    
     }
 
+
+
     @Override
     public OperandValueType getValueType(Map<UUID, DumbFact> facts) throws DummyGenericException {
-        List<Object> factValues = this.getValue(facts);
+        Map<UUID, Object> factValues = this.getValue(facts);
         if(factValues == null){
             throw new DummyGenericException(ErrorCode.FACT_FIELD_NOT_FOUND);
         }
         OperandValueType type = UtilityFunctions.getValueType(factValues.get(0));
-        if(! factValues.stream().allMatch(fv -> {
+        if(! factValues.values().stream().allMatch(fv -> {
             try {
                 return UtilityFunctions.getValueType(fv).equals(type);
             } catch (DummyGenericException e) {

@@ -1,6 +1,7 @@
 package org.dummy.brms.dummy_brms.model.conditions;
 
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -27,40 +28,65 @@ public class BinaryCondition extends Conditions{
     private Operand right;
 
 
+    
+
     @Override
-    public boolean evaluate(Map<UUID, DumbFact> facts) throws DummyGenericException {
+    public List<UUID> evaluate(Map<UUID, DumbFact> facts, String factClassName) throws DummyGenericException {
         
-        List<Object> leftValues = new LinkedList<>();
-        List<Object> rightValues = new LinkedList<>();
+        List<UUID> matchingFacts = new LinkedList<>();
 
-        if(left.getType() == OperandType.FACT_FIELD){
-            leftValues = ((FactFieldOperand)left).getValue(facts);
-        }else{
-            leftValues.add(((FixedValueOperand<?>)left).getValue());
-        }
+        Map<UUID, Object> leftValues = new HashMap();
+        Map<UUID, Object> rightValues = new HashMap();
 
-        if(right.getType() == OperandType.FACT_FIELD){
-            rightValues = ((FactFieldOperand)right).getValue(facts);
-        }else{
-            rightValues.add(((FixedValueOperand<?>)right).getValue());
-        }
-
-        OperandValueType leftValueType = left.getType() == OperandType.FIXED_VALUE ? ((FixedValueOperand<?>)left).getValueType(facts) : ((FactFieldOperand)left).getValueType(facts);
-        OperandValueType rightValueType = right.getType() == OperandType.FIXED_VALUE ? ((FixedValueOperand<?>)right).getValueType(facts) : ((FactFieldOperand)right).getValueType(facts);
+        OperandValueType leftValueType = left.getValueType(facts);
+        OperandValueType rightValueType = right.getValueType(facts);
 
         if(rightValueType != leftValueType){
             throw new DummyGenericException(ErrorCode.TYPE_MISMATCH_IN_BINARY_CONSTRAINT);
         }
+        
+        //TODO replace with bitmap enum
+        if(UtilityFunctions.isFactField(left) && UtilityFunctions.isFactField(right) ){
 
-        boolean check = false;
-        for( Object l : leftValues){
-            for(Object r : rightValues){
-                check = check || UtilityFunctions.checkGenricCondition(l, r, operator);
-                if(check)
-                    return true;
+            leftValues = ((FactFieldOperand)left).getValue(facts, factClassName);
+            rightValues = ((FactFieldOperand)right).getValue(facts, factClassName);
+            
+            for (var leftEntry : leftValues.entrySet()) {
+                for(var rightEntry: rightValues.entrySet()){
+                    if (UtilityFunctions.checkGenricCondition(leftEntry.getValue(), rightEntry.getValue(), operator)){
+                        matchingFacts.add(leftEntry.getKey());
+                        matchingFacts.add(rightEntry.getKey());
+                    }
+                }
             }
+
+        }else if(UtilityFunctions.isFactField(left) &&  !UtilityFunctions.isFactField(right) ){
+            leftValues = ((FactFieldOperand)left).getValue(facts, factClassName);
+            Object rightValue = ((FixedValueOperand<?>) right).getValue();
+            
+            for (var leftEntry : leftValues.entrySet()) {
+                if(UtilityFunctions.checkGenricCondition(leftEntry.getValue(), rightValue, operator)){
+                    matchingFacts.add(leftEntry.getKey());
+                }
+            }
+            
+
+        }else if( !UtilityFunctions.isFactField(left) &&  UtilityFunctions.isFactField(right) ){
+            rightValues = ((FactFieldOperand)right).getValue(facts, factClassName);
+            Object leftValue = ((FixedValueOperand<?>) left).getValue();
+
+
+            for(var rightEntry: rightValues.entrySet()){
+                if (UtilityFunctions.checkGenricCondition(leftValue, rightEntry.getValue(), operator)){
+                    matchingFacts.add(rightEntry.getKey());
+                }
+            }
+
+        }else {
+            throw new DummyGenericException(ErrorCode.MEANINGLESS_CONSTRAINT);
         }
-        return check; 
+
+        return matchingFacts; 
     }
 
    
