@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import org.dummy.brms.dummy_brms.model.operands.FixedValueOperand;
 
-import com.fasterxml.jackson.core.JacksonException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;

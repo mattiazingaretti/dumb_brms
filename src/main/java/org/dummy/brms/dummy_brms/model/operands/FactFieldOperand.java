@@ -77,10 +77,10 @@ public class FactFieldOperand extends Operand{
     @Override
     public OperandValueType getValueType(Map<UUID, DumbFact> facts) throws DummyGenericException {
         Map<UUID, Object> factValues = this.getValue(facts);
-        if(factValues == null){
+        if(factValues == null || factValues.isEmpty()){
             throw new DummyGenericException(ErrorCode.FACT_FIELD_NOT_FOUND);
         }
-        OperandValueType type = UtilityFunctions.getValueType(factValues.get(0));
+        OperandValueType type = UtilityFunctions.getValueType(factValues.values().toArray()[0]);
         if(! factValues.values().stream().allMatch(fv -> {
             try {
                 return UtilityFunctions.getValueType(fv).equals(type);

@@ -26,22 +26,17 @@ public class UnaryCondition extends Conditions{
         switch (operand.getType()) {
             case FACT_FIELD:
                 Map<UUID, Object> operandValues = ((FactFieldOperand)operand).getValue(facts, factClassName);
-                boolean check = false;
-                for( Object o : operandValues){
-                    if(! (o instanceof Boolean)){
+                
+                for( var entry : operandValues.entrySet()){
+                    if(! (entry.getValue() instanceof Boolean)){
                         throw new DummyGenericException(ErrorCode.UNARY_FIXED_FIELD_IS_NOT_BOOL);
                     }
-                    check = check || (this.operation.equals( UnaryOperationTypes.IS) ?  (Boolean)o : !(Boolean)o) ;
-                    if(check){return true;}
+                    Boolean value = this.operation.equals( UnaryOperationTypes.IS) ?  (Boolean)entry.getValue() : !((Boolean)entry.getValue()) ;
+                    if(value){
+                        toRet.add(entry.getKey());
+                    }
                 }
-                return check; 
-            case FIXED_VALUE:
-                FixedValueOperand<?> fixedOperand = (FixedValueOperand<?>) operand;
-                if(! (fixedOperand.getValue() instanceof Boolean)){
-                    throw new DummyGenericException(ErrorCode.UNARY_FIXED_FIELD_IS_NOT_BOOL);
-                }
-                Boolean val = (Boolean)fixedOperand.getValue();
-                return this.operation.equals( UnaryOperationTypes.IS) ?  val : !val ;
+                break; 
             default:
                 break;
      

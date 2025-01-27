@@ -16,7 +16,6 @@ import org.dummy.brms.dummy_brms.model.dto.ExecInDTO;
 import org.dummy.brms.dummy_brms.model.dto.ExecOutDTO;
 import org.dummy.brms.dummy_brms.rules.DumbRuleUnit;
 import org.dummy.brms.dummy_brms.services.RuleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,8 +35,9 @@ public class RuleServiceImpl implements RuleService{
             ruleUnit.getRules().add(r);
         });
         
+        ruleUnit.getFacts().clear();
+
         //Add facts to the rule unit
-        ruleUnit.setFacts(new HashMap<>());
         Arrays.stream(inDTO.getFacts()).forEach(f ->{
             ruleUnit.getFacts().put(f.getFactId(),f);
         });
@@ -46,7 +46,7 @@ public class RuleServiceImpl implements RuleService{
         unitInstance.fire();
         ruleUnit.getRulesExecutionOrder().values().forEach(val -> log.info("In service " +val.toString()));
 
-        return new ExecOutDTO();
+        return new ExecOutDTO("HELLO");
     }
 
 }

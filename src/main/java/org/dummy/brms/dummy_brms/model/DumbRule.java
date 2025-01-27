@@ -4,6 +4,8 @@ package org.dummy.brms.dummy_brms.model;
 import java.util.UUID;
 
 import org.dummy.brms.dummy_brms.model.conditions.Conditions;
+import org.dummy.brms.dummy_brms.model.mapper.ConditionFactsMap;
+
 
 import lombok.Data;
 
@@ -13,4 +15,6 @@ public class DumbRule {
     private String name;
     private int salience;
     private Conditions[] conditions;
+
+    private ConditionFactsMap[] matchingFactsIds;
 }
