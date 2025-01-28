@@ -1,7 +1,5 @@
 package org.dummy.brms.dummy_brms.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 
 public enum ErrorCode {
 
@@ -14,5 +12,31 @@ public enum ErrorCode {
     TYPE_MISMATCH_IN_BINARY_CONSTRAINT(500_003, "Type mismatch in left and right operands in binary constraint "),
     FAILED_TO_GET_FACT_FIELD_TYPE(500_004,"Expected all fact field to be the same type"),
     FAILED_TO_GET_VALUE_TYPE(500_005,"Failed To get value Type"),
-    MEANINGLESS_CONSTRAINT(500_006,"Fixed values binary constraint is meaningless")
+    MEANINGLESS_CONSTRAINT(500_006,"Fixed values binary constraint is meaningless");
+
+    Integer code;
+    String message;
+
+    ErrorCode(Integer code, String message){
+        this.code = code;
+        this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return "\"err_" + code + "\": \"" + message + "\"";
+    }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public ErrorCode setMessage(String message){
+        this.message = message;
+        return this;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

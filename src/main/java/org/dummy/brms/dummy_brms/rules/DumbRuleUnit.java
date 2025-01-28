@@ -57,10 +57,7 @@ public class DumbRuleUnit implements RuleUnitDefinition{
         this.facts = facts;
     }
 
-    @Override
-    public void onReinitialize() {
-        this.facts.clear();
-    }
+
 
     @Override
     public void defineRules(RulesFactory rulesFactory) {
