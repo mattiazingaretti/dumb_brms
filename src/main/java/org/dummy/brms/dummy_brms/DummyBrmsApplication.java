@@ -4,7 +4,7 @@ import org.dummy.brms.dummy_brms.config.EnvInitializer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "org.dummy.brms.dummy_brms")
 public class DummyBrmsApplication {
 
 	public static void main(String[] args) {
