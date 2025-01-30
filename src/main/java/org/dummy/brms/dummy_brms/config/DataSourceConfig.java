@@ -2,18 +2,15 @@ package org.dummy.brms.dummy_brms.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan("org.dummy.brms.dummy_brms.mappers")
+@MapperScan("org.dummy.brms.dummy_brms.mybatis.mappers")
 public class DataSourceConfig {
 
 
@@ -32,14 +29,7 @@ public class DataSourceConfig {
         return new HikariDataSource(hikariConfig);
     }
 
-    @Bean
-    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-        SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource);
-        PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        sessionFactory.setMapperLocations(resolver.getResources("classpath:mappers/*.xml"));
-        return sessionFactory.getObject();
-    }
+
 
     @Bean
     public DataSourceTransactionManager transactionManager(DataSource dataSource) {

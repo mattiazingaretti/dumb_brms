@@ -13,11 +13,13 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
+
         <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="org.dummy.brms.dummy_brms.mybatis.mappers" targetProject="src/main/java">
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="org.dummy.brms.dummy_brms.mybatis.mappers" targetProject="src/main/java">
+            <!--            <property name="mapperAnnotation" value="true"/> &lt;!&ndash; ADD THIS &ndash;&gt;-->
         </javaClientGenerator>
 
         <table schema="dumb_brms" tableName="input_data_types" />

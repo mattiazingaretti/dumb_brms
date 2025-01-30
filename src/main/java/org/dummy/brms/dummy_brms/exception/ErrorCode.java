@@ -6,6 +6,7 @@ public enum ErrorCode {
     BAD_REQUEST(400_000, "Bad Request"),
     NOT_FOUND(404_000, "Not Found"),
     FACT_FIELD_NOT_FOUND(404_001, "Fact field not found"),
+    MISSING_PROJECT_NAME(404_002, "Project to be added does not have a name"),
     INTERNAL_SERVER_ERRROR(500_000, "Internal Server Error"),
     FAILED_TO_EVALUATE_CONDITION(500_001, "Failed To evaluate condition"),
     UNARY_FIXED_FIELD_IS_NOT_BOOL(500_002, "Expected Fixed field value in Unary Constraint to be a Boolean "),
