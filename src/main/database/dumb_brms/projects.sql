@@ -1,6 +1,6 @@
-create table projects
+create table dumb_brms.projects
 (
-    id                bigint                  not null,
+    id                bigserial                  not null,
     user_id           bigint                  not null,
     project_name      varchar                 not null,
     last_update       timestamp default now() not null,
@@ -9,6 +9,6 @@ create table projects
         primary key (id, user_id)
 );
 
-alter table projects
+alter table dumb_brms.projects
     owner to postgres;
 

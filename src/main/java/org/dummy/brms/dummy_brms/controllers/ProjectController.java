@@ -20,7 +20,7 @@ public class ProjectController {
     @Autowired
     private ProjectsService projectsService;
 
-    @PostMapping("/addProject")
+    @PostMapping(value = "/addProject", produces = "application/json")
     public PostedResourceDTO addProject(@RequestBody ProjectDTO project) throws DummyBadRequestException {
         return projectsService.postProject(project);
     }

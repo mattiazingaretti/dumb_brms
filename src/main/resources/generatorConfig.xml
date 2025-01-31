@@ -2,25 +2,33 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-    <context id="PostgreSQLContext" targetRuntime="MyBatis3">
+    <context id="PostgreSQLContext" targetRuntime="MyBatis3DynamicSql">
         <jdbcConnection driverClass="org.postgresql.Driver"
                         connectionURL="jdbc:postgresql://localhost:5432/dumb_brms"
                         userId="postgres"
                         password="postgres"/>
 
-        <javaModelGenerator targetPackage="org.dummy.brms.dummy_brms.mybatis.pojo" targetProject="src/main/java">
-            <property name="enableSubPackages" value="true"/>
-            <property name="trimStrings" value="true"/>
-        </javaModelGenerator>
+
+        <javaModelGenerator targetPackage="org.dummy.brms.dummy_brms.mybatis.pojo" targetProject="src/main/java"/>
+
+        <javaClientGenerator targetPackage="org.dummy.brms.dummy_brms.mybatis.mappers" targetProject="src/main/java"/>
+
+        <!--        <javaModelGenerator targetPackage="org.dummy.brms.dummy_brms.mybatis.pojo" targetProject="src/main/java">-->
+<!--            <property name="enableSubPackages" value="true"/>-->
+<!--            <property name="trimStrings" value="true"/>-->
+<!--        </javaModelGenerator>-->
 
 
-        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">
-            <property name="enableSubPackages" value="true"/>
-        </sqlMapGenerator>
+<!--        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">-->
+<!--            <property name="enableSubPackages" value="true"/>-->
+<!--        </sqlMapGenerator>-->
 
-        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="org.dummy.brms.dummy_brms.mybatis.mappers" targetProject="src/main/java">
-            <!--            <property name="mapperAnnotation" value="true"/> &lt;!&ndash; ADD THIS &ndash;&gt;-->
-        </javaClientGenerator>
+<!--        <javaClientGenerator type="XMLMAPPER" targetPackage="org.dummy.brms.dummy_brms.mybatis.mappers" targetProject="src/main/java">-->
+<!--                        <property name="mapperAnnotation" value="true"/> &lt;!&ndash; ADD THIS &ndash;&gt;-->
+<!--        </javaClientGenerator>-->
+
+<!--        <javaClientGenerator type="XMLMAPPER" targetPackage="org.dummy.brms.dummy_brms.mybatis.mappers.xml" targetProject="src/main/java">-->
+<!--        </javaClientGenerator>-->
 
         <table schema="dumb_brms" tableName="input_data_types" />
         <table schema="dumb_brms" tableName="output_data_types" />

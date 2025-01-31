@@ -10,7 +10,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan("org.dummy.brms.dummy_brms.mybatis.mappers")
+@MapperScan("org.dummy.brms.dummy_brms.mybatis")
 public class DataSourceConfig {
 
 
@@ -28,7 +28,6 @@ public class DataSourceConfig {
 
         return new HikariDataSource(hikariConfig);
     }
-
 
 
     @Bean

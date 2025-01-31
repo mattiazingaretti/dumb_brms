@@ -5,8 +5,8 @@ import org.dummy.brms.dummy_brms.exception.DummyBadRequestException;
 import org.dummy.brms.dummy_brms.exception.ErrorCode;
 import org.dummy.brms.dummy_brms.model.dto.PostedResourceDTO;
 import org.dummy.brms.dummy_brms.model.dto.ProjectDTO;
-import org.dummy.brms.dummy_brms.mybatis.pojo.dumb_brms.Projects;
-import org.dummy.brms.dummy_brms.mybatis.repo.ProjectMapperIf;
+import org.dummy.brms.dummy_brms.mybatis.ext.ProjectsExtMapper;
+import org.dummy.brms.dummy_brms.mybatis.pojo.Projects;
 import org.dummy.brms.dummy_brms.services.ProjectsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,8 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class ProjectsServiceImpl implements ProjectsService {
 
-    ProjectMapperIf projectMapperIf;
+    @Autowired
+    ProjectsExtMapper projectsExtMapper;
 
     @Override
     public PostedResourceDTO postProject(ProjectDTO project) throws DummyBadRequestException {
@@ -24,8 +25,9 @@ public class ProjectsServiceImpl implements ProjectsService {
         }
 
         Projects proj = new Projects();
+        proj.setUserId(1L);
         proj.setProjectName(project.getName());
-        projectMapperIf.insert(proj);
+        projectsExtMapper.customInsert(proj);
         return PostedResourceDTO.builder()
                 .msg("Project Added Succssfully")
                 .success(true)
