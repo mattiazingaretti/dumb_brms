@@ -31,7 +31,7 @@ public class AuthController {
     JwtServiceImpl jwtService;
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequestDTO loginRequest) {
+    public JwtResponseDTO authenticateUser(@Valid @RequestBody LoginRequestDTO loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getEmail(),loginRequest.getPassword()));
@@ -44,10 +44,10 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new JwtResponseDTO(jwt,
+        return new JwtResponseDTO(jwt,
                 userDetails.getId(),
                 userDetails.getEmail(),
-                roles));
+                roles);
     }
 
     @PostMapping("/signup")
