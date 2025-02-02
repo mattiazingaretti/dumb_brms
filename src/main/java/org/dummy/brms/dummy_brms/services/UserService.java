@@ -8,9 +8,11 @@ import org.dummy.brms.dummy_brms.model.dto.UserDTO;
 public interface UserService {
 
 
-    UserDTO getUserById(Long id) throws DummyNotFoundException;
+    UserDTO getUserWithRoleById(Long id) throws DummyNotFoundException;
 
-    UserDTO getUserByEmail(String email);
+    UserDTO getUserWithRoleByEmail(String email);
 
-    PostedResourceDTO saveUser(SignupRequestDTO signupDto);
+    UserDTO getUserByEmail(String email) throws DummyNotFoundException;
+
+    PostedResourceDTO saveUser(SignupRequestDTO signupDto) throws DummyNotFoundException;
 }

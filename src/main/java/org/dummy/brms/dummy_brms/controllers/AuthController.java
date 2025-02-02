@@ -3,6 +3,7 @@ package org.dummy.brms.dummy_brms.controllers;
 
 import jakarta.validation.Valid;
 import org.dummy.brms.dummy_brms.auth.JwtServiceImpl;
+import org.dummy.brms.dummy_brms.exception.DummyNotFoundException;
 import org.dummy.brms.dummy_brms.model.dto.*;
 import org.dummy.brms.dummy_brms.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public PostedResourceDTO registerUser(@Valid @RequestBody SignupRequestDTO signUpRequest) {
+    public PostedResourceDTO registerUser(@Valid @RequestBody SignupRequestDTO signUpRequest) throws DummyNotFoundException {
         return userService.saveUser(signUpRequest);
     }
 

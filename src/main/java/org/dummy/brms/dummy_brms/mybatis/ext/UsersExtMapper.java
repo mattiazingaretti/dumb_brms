@@ -9,7 +9,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.CommonInsertMapper;
 @Mapper
 public interface UsersExtMapper extends CommonInsertMapper<Users> {
 
-    @Insert("INSERT INTO dumb_brms.users (id, username, psw_hash, email, flg_deleted) VALUES (DEFAULT, #{username}, #{pswHash}, #{email}, FALSE")
+    @Insert("INSERT INTO dumb_brms.users (id, username, psw_hash, email, flg_deleted) VALUES (DEFAULT, #{username}, #{pswHash}, #{email}, FALSE )")
     int insertUser(Users user);
 
 }

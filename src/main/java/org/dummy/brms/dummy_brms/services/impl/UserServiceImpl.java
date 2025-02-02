@@ -10,10 +10,7 @@ import org.dummy.brms.dummy_brms.model.dto.RolesDTO;
 import org.dummy.brms.dummy_brms.model.dto.SignupRequestDTO;
 import org.dummy.brms.dummy_brms.model.dto.UserDTO;
 import org.dummy.brms.dummy_brms.mybatis.ext.UsersExtMapper;
-import org.dummy.brms.dummy_brms.mybatis.mappers.RolesMapper;
-import org.dummy.brms.dummy_brms.mybatis.mappers.UserRolesMapper;
-import org.dummy.brms.dummy_brms.mybatis.mappers.VUsersDynamicSqlSupport;
-import org.dummy.brms.dummy_brms.mybatis.mappers.VUsersMapper;
+import org.dummy.brms.dummy_brms.mybatis.mappers.*;
 import org.dummy.brms.dummy_brms.mybatis.pojo.UserRoles;
 import org.dummy.brms.dummy_brms.mybatis.pojo.Users;
 import org.dummy.brms.dummy_brms.mybatis.pojo.VUsers;
@@ -46,9 +43,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     @Lazy
     PasswordEncoder encoder;
+    @Autowired
+    private UsersMapper usersMapper;
 
     @Override
-    public UserDTO getUserById(Long id) throws DummyNotFoundException {
+    public UserDTO getUserWithRoleById(Long id) throws DummyNotFoundException {
         List<VUsers> vuser = vUsersMapper.select(selDsl -> selDsl.where(VUsersDynamicSqlSupport.id, isEqualTo(id))).stream().toList();
         if(vuser == null || vuser.isEmpty())
             throw new DummyNotFoundException(ErrorCode.NOT_FOUND);
@@ -61,7 +60,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public UserDTO getUserByEmail(String email){
+    public UserDTO getUserWithRoleByEmail(String email){
         List<VUsers> vuser = vUsersMapper.select(selDsl -> selDsl.where(VUsersDynamicSqlSupport.email, isEqualTo(email))).stream().toList();
         if(vuser == null || vuser.isEmpty())
             throw new UsernameNotFoundException("User Not Found with email: " + email);
@@ -74,9 +73,23 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public PostedResourceDTO saveUser(SignupRequestDTO signupDto) {
+    public UserDTO getUserByEmail(String email) throws DummyNotFoundException {
+        List<Users> users = usersMapper.select(selDsl -> selDsl.where(UsersDynamicSqlSupport.email, isEqualTo(email))).stream().toList();
+        if(users == null || users.isEmpty())
+            throw new DummyNotFoundException(ErrorCode.NOT_FOUND);
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(users.get(0).getId());
+        userDTO.setUsername(users.get(0).getUsername());
+        userDTO.setEmail(users.get(0).getEmail());
+        userDTO.setPassword(users.get(0).getPswHash());
+        return userDTO;
+    }
+
+
+    @Override
+    public PostedResourceDTO saveUser(SignupRequestDTO signupDto) throws DummyNotFoundException {
         try{
-            getUserByEmail(signupDto.getEmail());
+            getUserWithRoleByEmail(signupDto.getEmail());
             return PostedResourceDTO.builder()
                     .success(false)
                     .msg("User already exists")
@@ -106,7 +119,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return this.getUserByEmail(email);
+        return this.getUserWithRoleByEmail(email);
     }
 
 }
