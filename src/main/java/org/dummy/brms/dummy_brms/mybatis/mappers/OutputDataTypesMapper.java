@@ -31,10 +31,10 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface OutputDataTypesMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<OutputDataTypes>, CommonUpdateMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2625171+01:00", comments="Source Table: dumb_brms.output_data_types")
     BasicColumn[] selectList = BasicColumn.columnList(userId, projectId, dataTypeName, dataTypeDescr, flgDeleted);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2615159+01:00", comments="Source Table: dumb_brms.output_data_types")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="OutputDataTypesResult", value = {
         @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT, id=true),
@@ -45,22 +45,22 @@ public interface OutputDataTypesMapper extends CommonCountMapper, CommonDeleteMa
     })
     List<OutputDataTypes> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2615159+01:00", comments="Source Table: dumb_brms.output_data_types")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("OutputDataTypesResult")
     Optional<OutputDataTypes> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2615159+01:00", comments="Source Table: dumb_brms.output_data_types")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, outputDataTypes, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2615159+01:00", comments="Source Table: dumb_brms.output_data_types")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, outputDataTypes, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2615159+01:00", comments="Source Table: dumb_brms.output_data_types")
     default int deleteByPrimaryKey(Long userId_, Long projectId_, String dataTypeName_) {
         return delete(c -> 
             c.where(userId, isEqualTo(userId_))
@@ -69,7 +69,7 @@ public interface OutputDataTypesMapper extends CommonCountMapper, CommonDeleteMa
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2615159+01:00", comments="Source Table: dumb_brms.output_data_types")
     default int insert(OutputDataTypes row) {
         return MyBatis3Utils.insert(this::insert, row, outputDataTypes, c ->
             c.map(userId).toProperty("userId")
@@ -80,7 +80,7 @@ public interface OutputDataTypesMapper extends CommonCountMapper, CommonDeleteMa
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2615159+01:00", comments="Source Table: dumb_brms.output_data_types")
     default int insertMultiple(Collection<OutputDataTypes> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, outputDataTypes, c ->
             c.map(userId).toProperty("userId")
@@ -91,7 +91,7 @@ public interface OutputDataTypesMapper extends CommonCountMapper, CommonDeleteMa
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2615159+01:00", comments="Source Table: dumb_brms.output_data_types")
     default int insertSelective(OutputDataTypes row) {
         return MyBatis3Utils.insert(this::insert, row, outputDataTypes, c ->
             c.map(userId).toPropertyWhenPresent("userId", row::getUserId)
@@ -102,22 +102,22 @@ public interface OutputDataTypesMapper extends CommonCountMapper, CommonDeleteMa
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2625171+01:00", comments="Source Table: dumb_brms.output_data_types")
     default Optional<OutputDataTypes> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, outputDataTypes, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2625171+01:00", comments="Source Table: dumb_brms.output_data_types")
     default List<OutputDataTypes> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, outputDataTypes, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2625171+01:00", comments="Source Table: dumb_brms.output_data_types")
     default List<OutputDataTypes> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, outputDataTypes, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2625171+01:00", comments="Source Table: dumb_brms.output_data_types")
     default Optional<OutputDataTypes> selectByPrimaryKey(Long userId_, Long projectId_, String dataTypeName_) {
         return selectOne(c ->
             c.where(userId, isEqualTo(userId_))
@@ -126,12 +126,12 @@ public interface OutputDataTypesMapper extends CommonCountMapper, CommonDeleteMa
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2625171+01:00", comments="Source Table: dumb_brms.output_data_types")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, outputDataTypes, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2625171+01:00", comments="Source Table: dumb_brms.output_data_types")
     static UpdateDSL<UpdateModel> updateAllColumns(OutputDataTypes row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(userId).equalTo(row::getUserId)
                 .set(projectId).equalTo(row::getProjectId)
@@ -140,7 +140,7 @@ public interface OutputDataTypesMapper extends CommonCountMapper, CommonDeleteMa
                 .set(flgDeleted).equalTo(row::getFlgDeleted);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2625171+01:00", comments="Source Table: dumb_brms.output_data_types")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(OutputDataTypes row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(userId).equalToWhenPresent(row::getUserId)
                 .set(projectId).equalToWhenPresent(row::getProjectId)
@@ -149,7 +149,7 @@ public interface OutputDataTypesMapper extends CommonCountMapper, CommonDeleteMa
                 .set(flgDeleted).equalToWhenPresent(row::getFlgDeleted);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4811861+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2625171+01:00", comments="Source Table: dumb_brms.output_data_types")
     default int updateByPrimaryKey(OutputDataTypes row) {
         return update(c ->
             c.set(dataTypeDescr).equalTo(row::getDataTypeDescr)
@@ -160,7 +160,7 @@ public interface OutputDataTypesMapper extends CommonCountMapper, CommonDeleteMa
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T08:57:36.4821879+01:00", comments="Source Table: dumb_brms.output_data_types")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-01-31T14:40:05.2625171+01:00", comments="Source Table: dumb_brms.output_data_types")
     default int updateByPrimaryKeySelective(OutputDataTypes row) {
         return update(c ->
             c.set(dataTypeDescr).equalToWhenPresent(row::getDataTypeDescr)

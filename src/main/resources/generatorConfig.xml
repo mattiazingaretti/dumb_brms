@@ -13,24 +13,14 @@
 
         <javaClientGenerator targetPackage="org.dummy.brms.dummy_brms.mybatis.mappers" targetProject="src/main/java"/>
 
-        <!--        <javaModelGenerator targetPackage="org.dummy.brms.dummy_brms.mybatis.pojo" targetProject="src/main/java">-->
-<!--            <property name="enableSubPackages" value="true"/>-->
-<!--            <property name="trimStrings" value="true"/>-->
-<!--        </javaModelGenerator>-->
-
-
-<!--        <sqlMapGenerator targetPackage="mappers" targetProject="src/main/resources">-->
-<!--            <property name="enableSubPackages" value="true"/>-->
-<!--        </sqlMapGenerator>-->
-
-<!--        <javaClientGenerator type="XMLMAPPER" targetPackage="org.dummy.brms.dummy_brms.mybatis.mappers" targetProject="src/main/java">-->
-<!--                        <property name="mapperAnnotation" value="true"/> &lt;!&ndash; ADD THIS &ndash;&gt;-->
-<!--        </javaClientGenerator>-->
-
-<!--        <javaClientGenerator type="XMLMAPPER" targetPackage="org.dummy.brms.dummy_brms.mybatis.mappers.xml" targetProject="src/main/java">-->
-<!--        </javaClientGenerator>-->
 
         <table schema="dumb_brms" tableName="input_data_types" />
+        <table schema="dumb_brms" tableName="user_roles" />
+        <table schema="dumb_brms" tableName="roles" />
+        <table schema="dumb_brms" tableName="users" />
+        <table schema="dumb_brms" tableName="v_users" />
+        <table schema="dumb_brms" tableName="ct_elements" />
+        <table schema="dumb_brms" tableName="group_codes" />
         <table schema="dumb_brms" tableName="output_data_types" />
         <table schema="dumb_brms" tableName="projects"/>
 

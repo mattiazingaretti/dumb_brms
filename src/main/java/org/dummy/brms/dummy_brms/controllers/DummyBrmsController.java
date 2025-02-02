@@ -4,6 +4,7 @@ import org.dummy.brms.dummy_brms.model.dto.ExecInDTO;
 import org.dummy.brms.dummy_brms.model.dto.ExecOutDTO;
 import org.dummy.brms.dummy_brms.services.RuleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,6 +35,11 @@ public class DummyBrmsController {
     public ExecOutDTO execute(@RequestBody ExecInDTO in) {
         return ruleService.executeRules(in);
     }
-    
-    
+
+
+    @GetMapping("/user")
+    @PreAuthorize("hasRole('USER')")
+    public String moderatorAccess() {
+        return "USER Board.";
+    }
 }
