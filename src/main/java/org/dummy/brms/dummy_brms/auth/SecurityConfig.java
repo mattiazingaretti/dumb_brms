@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req ->
                         req.requestMatchers("/auth/signup", "/auth/signin", "/v3/api-docs").permitAll() // Allow public access
                                 .requestMatchers("/project/**").hasRole("USER") // Allow access to users with USER role
+                                .requestMatchers("/design/**").hasRole("USER") // Allow access to users with USER role
                                 .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider())

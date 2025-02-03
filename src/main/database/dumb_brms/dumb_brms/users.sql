@@ -1,4 +1,4 @@
-create table users
+create table dumb_brms.users
 (
     id          bigserial
         constraint users_pk
@@ -11,6 +11,6 @@ create table users
     flg_deleted boolean default false
 );
 
-alter table users
+alter table dumb_brms.users
     owner to postgres;
 

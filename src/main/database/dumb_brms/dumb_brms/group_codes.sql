@@ -1,4 +1,4 @@
-create table group_codes
+create table dumb_brms.group_codes
 (
     group_code       varchar not null
         constraint group_codes_pk
@@ -6,6 +6,6 @@ create table group_codes
     group_code_descr varchar
 );
 
-alter table group_codes
+alter table dumb_brms.group_codes
     owner to postgres;
 
