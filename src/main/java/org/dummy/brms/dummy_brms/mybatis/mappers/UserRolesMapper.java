@@ -30,10 +30,10 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface UserRolesMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<UserRoles>, CommonUpdateMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2556803+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4298802+01:00", comments="Source Table: dumb_brms.user_roles")
     BasicColumn[] selectList = BasicColumn.columnList(userId, userRole);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.250683+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.419618+01:00", comments="Source Table: dumb_brms.user_roles")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="UserRolesResult", value = {
         @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT),
@@ -41,22 +41,22 @@ public interface UserRolesMapper extends CommonCountMapper, CommonDeleteMapper, 
     })
     List<UserRoles> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2516897+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4216252+01:00", comments="Source Table: dumb_brms.user_roles")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("UserRolesResult")
     Optional<UserRoles> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2526873+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4216252+01:00", comments="Source Table: dumb_brms.user_roles")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, userRoles, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2526873+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4216252+01:00", comments="Source Table: dumb_brms.user_roles")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, userRoles, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2536753+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4226305+01:00", comments="Source Table: dumb_brms.user_roles")
     default int insert(UserRoles row) {
         return MyBatis3Utils.insert(this::insert, row, userRoles, c ->
             c.map(userId).toProperty("userId")
@@ -64,7 +64,7 @@ public interface UserRolesMapper extends CommonCountMapper, CommonDeleteMapper, 
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2547548+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4288802+01:00", comments="Source Table: dumb_brms.user_roles")
     default int insertMultiple(Collection<UserRoles> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, userRoles, c ->
             c.map(userId).toProperty("userId")
@@ -72,7 +72,7 @@ public interface UserRolesMapper extends CommonCountMapper, CommonDeleteMapper, 
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2556803+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4298802+01:00", comments="Source Table: dumb_brms.user_roles")
     default int insertSelective(UserRoles row) {
         return MyBatis3Utils.insert(this::insert, row, userRoles, c ->
             c.map(userId).toPropertyWhenPresent("userId", row::getUserId)
@@ -80,33 +80,33 @@ public interface UserRolesMapper extends CommonCountMapper, CommonDeleteMapper, 
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2556803+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4310141+01:00", comments="Source Table: dumb_brms.user_roles")
     default Optional<UserRoles> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, userRoles, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2566931+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4320366+01:00", comments="Source Table: dumb_brms.user_roles")
     default List<UserRoles> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, userRoles, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2566931+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4330302+01:00", comments="Source Table: dumb_brms.user_roles")
     default List<UserRoles> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, userRoles, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2566931+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4340223+01:00", comments="Source Table: dumb_brms.user_roles")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, userRoles, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.257681+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4340223+01:00", comments="Source Table: dumb_brms.user_roles")
     static UpdateDSL<UpdateModel> updateAllColumns(UserRoles row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(userId).equalTo(row::getUserId)
                 .set(userRole).equalTo(row::getUserRole);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.257681+01:00", comments="Source Table: dumb_brms.user_roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4350215+01:00", comments="Source Table: dumb_brms.user_roles")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(UserRoles row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(userId).equalToWhenPresent(row::getUserId)
                 .set(userRole).equalToWhenPresent(row::getUserRole);

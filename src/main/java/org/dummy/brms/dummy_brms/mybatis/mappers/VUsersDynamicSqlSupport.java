@@ -6,25 +6,25 @@ import org.mybatis.dynamic.sql.AliasableSqlTable;
 import org.mybatis.dynamic.sql.SqlColumn;
 
 public final class VUsersDynamicSqlSupport {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2656754+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4417297+01:00", comments="Source Table: dumb_brms.v_users")
     public static final VUsers VUsers = new VUsers();
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2656754+01:00", comments="Source field: dumb_brms.v_users.id")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4417297+01:00", comments="Source field: dumb_brms.v_users.id")
     public static final SqlColumn<Long> id = VUsers.id;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2656754+01:00", comments="Source field: dumb_brms.v_users.username")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4417297+01:00", comments="Source field: dumb_brms.v_users.username")
     public static final SqlColumn<String> username = VUsers.username;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2656754+01:00", comments="Source field: dumb_brms.v_users.psw_hash")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4417297+01:00", comments="Source field: dumb_brms.v_users.psw_hash")
     public static final SqlColumn<String> pswHash = VUsers.pswHash;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2656754+01:00", comments="Source field: dumb_brms.v_users.email")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4432024+01:00", comments="Source field: dumb_brms.v_users.email")
     public static final SqlColumn<String> email = VUsers.email;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2656754+01:00", comments="Source field: dumb_brms.v_users.user_role")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4432024+01:00", comments="Source field: dumb_brms.v_users.user_role")
     public static final SqlColumn<String> userRole = VUsers.userRole;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2656754+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4417297+01:00", comments="Source Table: dumb_brms.v_users")
     public static final class VUsers extends AliasableSqlTable<VUsers> {
         public final SqlColumn<Long> id = column("id", JDBCType.BIGINT);
 

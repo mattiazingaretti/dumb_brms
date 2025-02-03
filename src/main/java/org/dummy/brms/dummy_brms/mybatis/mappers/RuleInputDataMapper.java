@@ -31,131 +31,133 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface RuleInputDataMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<RuleInputData>, CommonUpdateMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
-    BasicColumn[] selectList = BasicColumn.columnList(ridClass, userId, projectId, ridDescription);
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    BasicColumn[] selectList = BasicColumn.columnList(projectId, ridClass, userId, ridDescription);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="RuleInputDataResult", value = {
+        @Result(column="project_id", property="projectId", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="rid_class", property="ridClass", jdbcType=JdbcType.VARCHAR, id=true),
         @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT),
-        @Result(column="project_id", property="projectId", jdbcType=JdbcType.BIGINT),
         @Result(column="rid_description", property="ridDescription", jdbcType=JdbcType.VARCHAR)
     })
     List<RuleInputData> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("RuleInputDataResult")
     Optional<RuleInputData> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, ruleInputData, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, ruleInputData, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
-    default int deleteByPrimaryKey(String ridClass_) {
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    default int deleteByPrimaryKey(Long projectId_, String ridClass_) {
         return delete(c -> 
-            c.where(ridClass, isEqualTo(ridClass_))
+            c.where(projectId, isEqualTo(projectId_))
+            .and(ridClass, isEqualTo(ridClass_))
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int insert(RuleInputData row) {
         return MyBatis3Utils.insert(this::insert, row, ruleInputData, c ->
-            c.map(ridClass).toProperty("ridClass")
+            c.map(projectId).toProperty("projectId")
+            .map(ridClass).toProperty("ridClass")
             .map(userId).toProperty("userId")
-            .map(projectId).toProperty("projectId")
             .map(ridDescription).toProperty("ridDescription")
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int insertMultiple(Collection<RuleInputData> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, ruleInputData, c ->
-            c.map(ridClass).toProperty("ridClass")
+            c.map(projectId).toProperty("projectId")
+            .map(ridClass).toProperty("ridClass")
             .map(userId).toProperty("userId")
-            .map(projectId).toProperty("projectId")
             .map(ridDescription).toProperty("ridDescription")
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int insertSelective(RuleInputData row) {
         return MyBatis3Utils.insert(this::insert, row, ruleInputData, c ->
-            c.map(ridClass).toPropertyWhenPresent("ridClass", row::getRidClass)
+            c.map(projectId).toPropertyWhenPresent("projectId", row::getProjectId)
+            .map(ridClass).toPropertyWhenPresent("ridClass", row::getRidClass)
             .map(userId).toPropertyWhenPresent("userId", row::getUserId)
-            .map(projectId).toPropertyWhenPresent("projectId", row::getProjectId)
             .map(ridDescription).toPropertyWhenPresent("ridDescription", row::getRidDescription)
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default Optional<RuleInputData> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, ruleInputData, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default List<RuleInputData> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, ruleInputData, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default List<RuleInputData> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, ruleInputData, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
-    default Optional<RuleInputData> selectByPrimaryKey(String ridClass_) {
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    default Optional<RuleInputData> selectByPrimaryKey(Long projectId_, String ridClass_) {
         return selectOne(c ->
-            c.where(ridClass, isEqualTo(ridClass_))
+            c.where(projectId, isEqualTo(projectId_))
+            .and(ridClass, isEqualTo(ridClass_))
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, ruleInputData, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2719584+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     static UpdateDSL<UpdateModel> updateAllColumns(RuleInputData row, UpdateDSL<UpdateModel> dsl) {
-        return dsl.set(ridClass).equalTo(row::getRidClass)
+        return dsl.set(projectId).equalTo(row::getProjectId)
+                .set(ridClass).equalTo(row::getRidClass)
                 .set(userId).equalTo(row::getUserId)
-                .set(projectId).equalTo(row::getProjectId)
                 .set(ridDescription).equalTo(row::getRidDescription);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2729648+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(RuleInputData row, UpdateDSL<UpdateModel> dsl) {
-        return dsl.set(ridClass).equalToWhenPresent(row::getRidClass)
+        return dsl.set(projectId).equalToWhenPresent(row::getProjectId)
+                .set(ridClass).equalToWhenPresent(row::getRidClass)
                 .set(userId).equalToWhenPresent(row::getUserId)
-                .set(projectId).equalToWhenPresent(row::getProjectId)
                 .set(ridDescription).equalToWhenPresent(row::getRidDescription);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2729648+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int updateByPrimaryKey(RuleInputData row) {
         return update(c ->
             c.set(userId).equalTo(row::getUserId)
-            .set(projectId).equalTo(row::getProjectId)
             .set(ridDescription).equalTo(row::getRidDescription)
-            .where(ridClass, isEqualTo(row::getRidClass))
+            .where(projectId, isEqualTo(row::getProjectId))
+            .and(ridClass, isEqualTo(row::getRidClass))
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T21:30:27.2729648+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4492108+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int updateByPrimaryKeySelective(RuleInputData row) {
         return update(c ->
             c.set(userId).equalToWhenPresent(row::getUserId)
-            .set(projectId).equalToWhenPresent(row::getProjectId)
             .set(ridDescription).equalToWhenPresent(row::getRidDescription)
-            .where(ridClass, isEqualTo(row::getRidClass))
+            .where(projectId, isEqualTo(row::getProjectId))
+            .and(ridClass, isEqualTo(row::getRidClass))
         );
     }
 }

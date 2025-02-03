@@ -1,8 +1,6 @@
 create table dumb_brms.rule_output_data_fields
 (
-    rod_class      varchar not null
-        constraint rule_output_data_fields_rule_output_data_rid_class_fk
-            references dumb_brms.rule_output_data,
+    rod_class      varchar not null,
     rod_field_name varchar not null,
     rod_field_type varchar not null,
     project_id     integer not null
