@@ -2,10 +2,7 @@ package org.dummy.brms.dummy_brms.controllers;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.dummy.brms.dummy_brms.model.dto.PostedResourceDTO;
-import org.dummy.brms.dummy_brms.model.dto.RuleInputRequestDTO;
-import org.dummy.brms.dummy_brms.model.dto.RuleInputResponseDTO;
-import org.dummy.brms.dummy_brms.model.dto.UserDTO;
+import org.dummy.brms.dummy_brms.model.dto.*;
 import org.dummy.brms.dummy_brms.services.DesignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,5 +29,17 @@ public class DesignController {
     @PreAuthorize("hasRole('USER')")
     public List<RuleInputResponseDTO> getRuleInputData(@PathVariable Long projectId, Authentication authentication) {
         return designService.getRuleInput(projectId,(UserDTO) authentication.getPrincipal());
+    }
+
+    @PostMapping(value = "/addRuleOutputData", produces = "application/json")
+    @PreAuthorize("hasRole('USER')")
+    public PostedResourceDTO addRuleOutputData(Authentication authentication, @RequestBody List<RuleOutputRequestDTO> rinput) {
+        return designService.postRuleOutPut(rinput, (UserDTO) authentication.getPrincipal());
+    }
+
+    @GetMapping(value = "/getRuleOutputData/{projectId}", produces = "application/json")
+    @PreAuthorize("hasRole('USER')")
+    public List<RuleOutputResponseDTO> getRuleOutputData(@PathVariable Long projectId, Authentication authentication) {
+        return designService.getRuleOutput(projectId,(UserDTO) authentication.getPrincipal());
     }
 }

@@ -180,7 +180,7 @@ public class DesignServiceImpl implements DesignService {
                             .where(RuleInputDataDynamicSqlSupport.ridClass, isEqualTo(rodFound1.getRodClass()))
                             .and(RuleInputDataDynamicSqlSupport.projectId, isEqualTo(rodFound1.getProjectId())));
             rodFields.forEach(ruleInputDataFields ->{
-                RuleInputFieldResponseDTO f = new RuleInputFieldResponseDTO();
+                RuleOutputFieldResponseDTO f = new RuleOutputFieldResponseDTO();
                 f.setFieldName(ruleInputDataFields.getRodFieldName());
                 f.setFieldType(ruleInputDataFields.getRodFieldType());
                 ruleInputResponseDTO.getFields().add(f);

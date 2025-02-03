@@ -10,5 +10,5 @@ public class RuleOutputResponseDTO {
     private Long projectId;
     private String className;
     private String classDescription;
-    private List<RuleInputFieldResponseDTO> fields;
+    private List<RuleOutputFieldResponseDTO> fields;
 }
