@@ -32,13 +32,13 @@ public class SecurityConfig {
     @Autowired
     public UserDetailsService userDetailsService;
 
-    // Configuring HttpSecurity
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(req ->
                         req.requestMatchers("/auth/signup", "/auth/signin", "/v3/api-docs").permitAll() // Allow public access
+                                .requestMatchers("/project/**").hasRole("USER") // Allow access to users with USER role
                                 .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider())

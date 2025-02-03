@@ -27,7 +27,7 @@ public class UserDTO implements UserDetails {
     public UserDTO(List<RolesDTO> roles) {
         this.roles = roles;
         this.authorities = roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getRole()))
+                .map(role -> new SimpleGrantedAuthority("ROLE_"+role.getRole()))
                 .collect(Collectors.toList());
     }
 

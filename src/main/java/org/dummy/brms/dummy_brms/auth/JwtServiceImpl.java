@@ -7,14 +7,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.dummy.brms.dummy_brms.model.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -34,8 +34,11 @@ public class JwtServiceImpl {
     public String generateJwtToken(Authentication authentication) {
 
         UserDTO userPrincipal = (UserDTO) authentication.getPrincipal();
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("roles", userPrincipal.getAuthorities());
 
         return Jwts.builder()
+                .setClaims(claims)
                 .setSubject((userPrincipal.getEmail()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + jwtExpirationMs))
@@ -103,5 +106,39 @@ public class JwtServiceImpl {
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = extractUsername(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+
+    public List<SimpleGrantedAuthority> getAuthoritiesFromToken(String token) {
+        try {
+            Claims claims = Jwts.parserBuilder()
+                    .setSigningKey(this.getSignKey())
+                    .build()
+                    .parseClaimsJws(token)
+                    .getBody();
+
+            List<Map<String, String>> rolesObj = (List<Map<String, String>>) claims.get("roles");
+
+            if (rolesObj == null) {
+                return Collections.emptyList();
+            }
+
+            List<SimpleGrantedAuthority> authorities;
+
+            // Case 2: Roles are stored as a list of maps
+            if (rolesObj instanceof List<?>) {
+                List<Map<String, String>> roles = (List<Map<String, String>>) rolesObj;
+                authorities = roles.stream()
+                        .map(role -> new SimpleGrantedAuthority("ROLE_"+role.get("authority")))
+                        .collect(Collectors.toList());
+            } else {
+                throw new IllegalArgumentException("Invalid roles format in JWT token");
+            }
+
+            return authorities;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
     }
 }
