@@ -3,7 +3,7 @@ create table dumb_brms.rule_output_data_fields
     rod_class      varchar not null,
     rod_field_name varchar not null,
     rod_field_type varchar not null,
-    project_id     integer not null
+    project_id     bigint  not null
         constraint rule_output_data_fields_projects_id_fk
             references dumb_brms.projects,
     constraint rule_output_data_fields_pk

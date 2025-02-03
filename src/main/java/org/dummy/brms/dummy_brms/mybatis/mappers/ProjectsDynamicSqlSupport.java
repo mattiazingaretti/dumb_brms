@@ -7,25 +7,25 @@ import org.mybatis.dynamic.sql.AliasableSqlTable;
 import org.mybatis.dynamic.sql.SqlColumn;
 
 public final class ProjectsDynamicSqlSupport {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4462109+01:00", comments="Source Table: dumb_brms.projects")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.6004962+01:00", comments="Source Table: dumb_brms.projects")
     public static final Projects projects = new Projects();
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4462109+01:00", comments="Source field: dumb_brms.projects.id")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.6004962+01:00", comments="Source field: dumb_brms.projects.id")
     public static final SqlColumn<Long> id = projects.id;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4462109+01:00", comments="Source field: dumb_brms.projects.user_id")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.6004962+01:00", comments="Source field: dumb_brms.projects.user_id")
     public static final SqlColumn<Long> userId = projects.userId;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4462109+01:00", comments="Source field: dumb_brms.projects.project_name")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.6004962+01:00", comments="Source field: dumb_brms.projects.project_name")
     public static final SqlColumn<String> projectName = projects.projectName;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4462109+01:00", comments="Source field: dumb_brms.projects.last_update")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.6004962+01:00", comments="Source field: dumb_brms.projects.last_update")
     public static final SqlColumn<Date> lastUpdate = projects.lastUpdate;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4472122+01:00", comments="Source field: dumb_brms.projects.creation_datetime")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.6004962+01:00", comments="Source field: dumb_brms.projects.creation_datetime")
     public static final SqlColumn<Date> creationDatetime = projects.creationDatetime;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T22:51:05.4462109+01:00", comments="Source Table: dumb_brms.projects")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.6004962+01:00", comments="Source Table: dumb_brms.projects")
     public static final class Projects extends AliasableSqlTable<Projects> {
         public final SqlColumn<Long> id = column("id", JDBCType.BIGINT);
 
