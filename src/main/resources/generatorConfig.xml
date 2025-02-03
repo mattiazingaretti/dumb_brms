@@ -14,16 +14,18 @@
         <javaClientGenerator targetPackage="org.dummy.brms.dummy_brms.mybatis.mappers" targetProject="src/main/java"/>
 
 
-        <table schema="dumb_brms" tableName="input_data_types" />
         <table schema="dumb_brms" tableName="user_roles" />
         <table schema="dumb_brms" tableName="roles" />
         <table schema="dumb_brms" tableName="users" />
         <table schema="dumb_brms" tableName="v_users" />
         <table schema="dumb_brms" tableName="ct_elements" />
         <table schema="dumb_brms" tableName="group_codes" />
-        <table schema="dumb_brms" tableName="output_data_types" />
         <table schema="dumb_brms" tableName="projects"/>
-
+        <table schema="dumb_brms" tableName="rule_data_types"/>
+        <table schema="dumb_brms" tableName="rule_input_data"/>
+        <table schema="dumb_brms" tableName="rule_input_data_fields"/>
+        <table schema="dumb_brms" tableName="rule_output_data"/>
+        <table schema="dumb_brms" tableName="rule_output_data_fields"/>
 
     </context>
 </generatorConfiguration>
