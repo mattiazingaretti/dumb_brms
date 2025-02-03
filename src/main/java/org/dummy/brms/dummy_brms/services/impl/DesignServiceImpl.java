@@ -199,7 +199,7 @@ public class DesignServiceImpl implements DesignService {
         if(all != null && !all.isEmpty()){
             all.forEach(rdt-> {
                 RuleDataTypesDTO rdtDTO = new RuleDataTypesDTO();
-t ad                rdtDTO.setDataType(rdt.getDataType());
+                rdtDTO.setDataType(rdt.getDataType());
                 toRet.add(rdtDTO);
             });
         }
