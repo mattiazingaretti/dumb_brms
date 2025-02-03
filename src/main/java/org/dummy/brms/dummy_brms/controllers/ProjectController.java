@@ -25,7 +25,7 @@ public class ProjectController {
 
     @PostMapping(value = "/addProject", produces = "application/json")
     @PreAuthorize("hasRole('USER')")
-    public PostedResourceDTO addProject(@RequestBody ProjectDTO project, Authentication authentication) throws DummyBadRequestException {
+    public PostedResourceDTO addProject(Authentication authentication,@RequestBody ProjectDTO project) throws DummyBadRequestException {
         return projectsService.postProject(project, (UserDTO) authentication.getPrincipal());
     }
 

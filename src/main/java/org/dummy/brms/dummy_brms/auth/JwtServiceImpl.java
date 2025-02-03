@@ -129,7 +129,7 @@ public class JwtServiceImpl {
             if (rolesObj instanceof List<?>) {
                 List<Map<String, String>> roles = (List<Map<String, String>>) rolesObj;
                 authorities = roles.stream()
-                        .map(role -> new SimpleGrantedAuthority("ROLE_"+role.get("authority")))
+                        .map(role -> new SimpleGrantedAuthority(role.get("authority")))
                         .collect(Collectors.toList());
             } else {
                 throw new IllegalArgumentException("Invalid roles format in JWT token");
