@@ -3,11 +3,9 @@ package org.dummy.brms.dummy_brms.services.impl;
 
 import lombok.extern.slf4j.Slf4j;
 import org.dummy.brms.dummy_brms.model.dto.*;
+import org.dummy.brms.dummy_brms.mybatis.ext.RuleDataTypesMapperExt;
 import org.dummy.brms.dummy_brms.mybatis.mappers.*;
-import org.dummy.brms.dummy_brms.mybatis.pojo.RuleInputData;
-import org.dummy.brms.dummy_brms.mybatis.pojo.RuleInputDataFields;
-import org.dummy.brms.dummy_brms.mybatis.pojo.RuleOutputData;
-import org.dummy.brms.dummy_brms.mybatis.pojo.RuleOutputDataFields;
+import org.dummy.brms.dummy_brms.mybatis.pojo.*;
 import org.dummy.brms.dummy_brms.services.DesignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +18,9 @@ import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 @Slf4j
 @Service
 public class DesignServiceImpl implements DesignService {
+
+    @Autowired
+    RuleDataTypesMapperExt ruleDataTypesMapperExt;
 
     @Autowired
     RuleInputDataMapper ruleInputDataMapper;
@@ -167,8 +168,8 @@ public class DesignServiceImpl implements DesignService {
 
         List<RuleOutputData> rodFound = ruleOutputDataMapper.select(selectModelQueryExpressionDSL ->
                 selectModelQueryExpressionDSL
-                        .where(RuleInputDataDynamicSqlSupport.projectId, isEqualTo(projectId))
-                        .and(RuleInputDataDynamicSqlSupport.userId, isEqualTo(principal.getId())));
+                        .where(RuleOutputDataDynamicSqlSupport.projectId, isEqualTo(projectId))
+                        .and(RuleOutputDataDynamicSqlSupport.userId, isEqualTo(principal.getId())));
         rodFound.forEach(rodFound1 -> {
             RuleOutputResponseDTO ruleInputResponseDTO = new RuleOutputResponseDTO();
             ruleInputResponseDTO.setClassName(rodFound1.getRodClass());
@@ -177,8 +178,8 @@ public class DesignServiceImpl implements DesignService {
             ruleInputResponseDTO.setFields(new LinkedList<>());
             List<RuleOutputDataFields> rodFields = ruleOutputDataFieldsMapper.select(selectModelQueryExpressionDSL ->
                     selectModelQueryExpressionDSL
-                            .where(RuleInputDataDynamicSqlSupport.ridClass, isEqualTo(rodFound1.getRodClass()))
-                            .and(RuleInputDataDynamicSqlSupport.projectId, isEqualTo(rodFound1.getProjectId())));
+                            .where(RuleOutputDataFieldsDynamicSqlSupport.rodClass, isEqualTo(rodFound1.getRodClass()))
+                            .and(RuleOutputDataFieldsDynamicSqlSupport.projectId, isEqualTo(rodFound1.getProjectId())));
             rodFields.forEach(ruleInputDataFields ->{
                 RuleOutputFieldResponseDTO f = new RuleOutputFieldResponseDTO();
                 f.setFieldName(ruleInputDataFields.getRodFieldName());
@@ -190,4 +191,19 @@ public class DesignServiceImpl implements DesignService {
 
         return toRet;
     }
+
+    @Override
+    public List<RuleDataTypesDTO> getDataTypes(UserDTO principal) {
+        List<RuleDataTypesDTO> toRet = new LinkedList<>();
+        List<RuleDataTypes> all = ruleDataTypesMapperExt.selectAll();
+        if(all != null && !all.isEmpty()){
+            all.forEach(rdt-> {
+                RuleDataTypesDTO rdtDTO = new RuleDataTypesDTO();
+t ad                rdtDTO.setDataType(rdt.getDataType());
+                toRet.add(rdtDTO);
+            });
+        }
+        return toRet;
+    }
+
 }

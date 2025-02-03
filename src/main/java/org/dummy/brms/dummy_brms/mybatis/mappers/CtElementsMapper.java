@@ -31,10 +31,10 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface CtElementsMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<CtElements>, CommonUpdateMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5994957+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     BasicColumn[] selectList = BasicColumn.columnList(groupCode, elementCode, elementDescr, filter, lastUpdate);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5984972+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="CtElementsResult", value = {
         @Result(column="group_code", property="groupCode", jdbcType=JdbcType.VARCHAR, id=true),
@@ -45,22 +45,22 @@ public interface CtElementsMapper extends CommonCountMapper, CommonDeleteMapper,
     })
     List<CtElements> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5984972+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("CtElementsResult")
     Optional<CtElements> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5984972+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, ctElements, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5984972+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, ctElements, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5984972+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default int deleteByPrimaryKey(String groupCode_, String elementCode_, String elementDescr_) {
         return delete(c -> 
             c.where(groupCode, isEqualTo(groupCode_))
@@ -69,7 +69,7 @@ public interface CtElementsMapper extends CommonCountMapper, CommonDeleteMapper,
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5984972+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default int insert(CtElements row) {
         return MyBatis3Utils.insert(this::insert, row, ctElements, c ->
             c.map(groupCode).toProperty("groupCode")
@@ -80,7 +80,7 @@ public interface CtElementsMapper extends CommonCountMapper, CommonDeleteMapper,
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5984972+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default int insertMultiple(Collection<CtElements> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, ctElements, c ->
             c.map(groupCode).toProperty("groupCode")
@@ -91,7 +91,7 @@ public interface CtElementsMapper extends CommonCountMapper, CommonDeleteMapper,
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5984972+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default int insertSelective(CtElements row) {
         return MyBatis3Utils.insert(this::insert, row, ctElements, c ->
             c.map(groupCode).toPropertyWhenPresent("groupCode", row::getGroupCode)
@@ -102,22 +102,22 @@ public interface CtElementsMapper extends CommonCountMapper, CommonDeleteMapper,
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5994957+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default Optional<CtElements> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, ctElements, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5994957+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default List<CtElements> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, ctElements, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5994957+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default List<CtElements> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, ctElements, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5994957+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default Optional<CtElements> selectByPrimaryKey(String groupCode_, String elementCode_, String elementDescr_) {
         return selectOne(c ->
             c.where(groupCode, isEqualTo(groupCode_))
@@ -126,12 +126,12 @@ public interface CtElementsMapper extends CommonCountMapper, CommonDeleteMapper,
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5994957+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, ctElements, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5994957+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     static UpdateDSL<UpdateModel> updateAllColumns(CtElements row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(groupCode).equalTo(row::getGroupCode)
                 .set(elementCode).equalTo(row::getElementCode)
@@ -140,7 +140,7 @@ public interface CtElementsMapper extends CommonCountMapper, CommonDeleteMapper,
                 .set(lastUpdate).equalTo(row::getLastUpdate);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5994957+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(CtElements row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(groupCode).equalToWhenPresent(row::getGroupCode)
                 .set(elementCode).equalToWhenPresent(row::getElementCode)
@@ -149,7 +149,7 @@ public interface CtElementsMapper extends CommonCountMapper, CommonDeleteMapper,
                 .set(lastUpdate).equalToWhenPresent(row::getLastUpdate);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5994957+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default int updateByPrimaryKey(CtElements row) {
         return update(c ->
             c.set(filter).equalTo(row::getFilter)
@@ -160,7 +160,7 @@ public interface CtElementsMapper extends CommonCountMapper, CommonDeleteMapper,
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5994957+01:00", comments="Source Table: dumb_brms.ct_elements")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7698868+01:00", comments="Source Table: dumb_brms.ct_elements")
     default int updateByPrimaryKeySelective(CtElements row) {
         return update(c ->
             c.set(filter).equalToWhenPresent(row::getFilter)

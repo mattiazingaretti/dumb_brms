@@ -30,10 +30,10 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface VUsersMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<VUsers>, CommonUpdateMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7688894+01:00", comments="Source Table: dumb_brms.v_users")
     BasicColumn[] selectList = BasicColumn.columnList(id, username, pswHash, email, userRole);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5963641+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7678883+01:00", comments="Source Table: dumb_brms.v_users")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="VUsersResult", value = {
         @Result(column="id", property="id", jdbcType=JdbcType.BIGINT),
@@ -44,22 +44,22 @@ public interface VUsersMapper extends CommonCountMapper, CommonDeleteMapper, Com
     })
     List<VUsers> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7678883+01:00", comments="Source Table: dumb_brms.v_users")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("VUsersResult")
     Optional<VUsers> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7678883+01:00", comments="Source Table: dumb_brms.v_users")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, VUsers, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7678883+01:00", comments="Source Table: dumb_brms.v_users")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, VUsers, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7678883+01:00", comments="Source Table: dumb_brms.v_users")
     default int insert(VUsers row) {
         return MyBatis3Utils.insert(this::insert, row, VUsers, c ->
             c.map(id).toProperty("id")
@@ -70,7 +70,7 @@ public interface VUsersMapper extends CommonCountMapper, CommonDeleteMapper, Com
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7678883+01:00", comments="Source Table: dumb_brms.v_users")
     default int insertMultiple(Collection<VUsers> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, VUsers, c ->
             c.map(id).toProperty("id")
@@ -81,7 +81,7 @@ public interface VUsersMapper extends CommonCountMapper, CommonDeleteMapper, Com
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7688894+01:00", comments="Source Table: dumb_brms.v_users")
     default int insertSelective(VUsers row) {
         return MyBatis3Utils.insert(this::insert, row, VUsers, c ->
             c.map(id).toPropertyWhenPresent("id", row::getId)
@@ -92,27 +92,27 @@ public interface VUsersMapper extends CommonCountMapper, CommonDeleteMapper, Com
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7688894+01:00", comments="Source Table: dumb_brms.v_users")
     default Optional<VUsers> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, VUsers, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7688894+01:00", comments="Source Table: dumb_brms.v_users")
     default List<VUsers> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, VUsers, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7688894+01:00", comments="Source Table: dumb_brms.v_users")
     default List<VUsers> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, VUsers, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7688894+01:00", comments="Source Table: dumb_brms.v_users")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, VUsers, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7688894+01:00", comments="Source Table: dumb_brms.v_users")
     static UpdateDSL<UpdateModel> updateAllColumns(VUsers row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(id).equalTo(row::getId)
                 .set(username).equalTo(row::getUsername)
@@ -121,7 +121,7 @@ public interface VUsersMapper extends CommonCountMapper, CommonDeleteMapper, Com
                 .set(userRole).equalTo(row::getUserRole);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:05:09.5974964+01:00", comments="Source Table: dumb_brms.v_users")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-02-03T23:41:22.7688894+01:00", comments="Source Table: dumb_brms.v_users")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(VUsers row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(id).equalToWhenPresent(row::getId)
                 .set(username).equalToWhenPresent(row::getUsername)

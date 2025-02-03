@@ -42,4 +42,12 @@ public class DesignController {
     public List<RuleOutputResponseDTO> getRuleOutputData(@PathVariable Long projectId, Authentication authentication) {
         return designService.getRuleOutput(projectId,(UserDTO) authentication.getPrincipal());
     }
+
+
+    @GetMapping(value = "/getDataTypes", produces = "application/json")
+    @PreAuthorize("hasRole('USER')")
+    public List<RuleDataTypesDTO> getDataTypes( Authentication authentication) {
+        return designService.getDataTypes((UserDTO) authentication.getPrincipal());
+    }
+
 }
