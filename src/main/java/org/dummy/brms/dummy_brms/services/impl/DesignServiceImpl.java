@@ -206,4 +206,12 @@ public class DesignServiceImpl implements DesignService {
         return toRet;
     }
 
+    @Override
+    public RuleDataResponseDTO getRuleData(Long projectId, UserDTO principal) {
+        return RuleDataResponseDTO.builder()
+                .inputData(this.getRuleInput(projectId, principal))
+                .outputData(this.getRuleOutput(projectId, principal))
+                .build();
+    }
+
 }

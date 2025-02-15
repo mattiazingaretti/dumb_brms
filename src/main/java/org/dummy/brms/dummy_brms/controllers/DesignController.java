@@ -19,10 +19,15 @@ public class DesignController {
     @Autowired
     DesignService designService;
 
-    @PostMapping(value = "/addRuleInputData", produces = "application/json")
+
+    /**
+     * GET requests
+     */
+
+    @GetMapping(value = "/getRuleData/{projectId}", produces = "application/json")
     @PreAuthorize("hasRole('USER')")
-    public PostedResourceDTO addRuleInputData(Authentication authentication, @RequestBody List<RuleInputRequestDTO> rinput) {
-        return designService.postRuleInput(rinput, (UserDTO) authentication.getPrincipal());
+    public RuleDataResponseDTO getRuleData(@PathVariable Long projectId, Authentication authentication) {
+        return designService.getRuleData(projectId,(UserDTO) authentication.getPrincipal());
     }
 
     @GetMapping(value = "/getRuleInputData/{projectId}", produces = "application/json")
@@ -30,24 +35,31 @@ public class DesignController {
     public List<RuleInputResponseDTO> getRuleInputData(@PathVariable Long projectId, Authentication authentication) {
         return designService.getRuleInput(projectId,(UserDTO) authentication.getPrincipal());
     }
-
-    @PostMapping(value = "/addRuleOutputData", produces = "application/json")
-    @PreAuthorize("hasRole('USER')")
-    public PostedResourceDTO addRuleOutputData(Authentication authentication, @RequestBody List<RuleOutputRequestDTO> rinput) {
-        return designService.postRuleOutPut(rinput, (UserDTO) authentication.getPrincipal());
-    }
-
     @GetMapping(value = "/getRuleOutputData/{projectId}", produces = "application/json")
     @PreAuthorize("hasRole('USER')")
     public List<RuleOutputResponseDTO> getRuleOutputData(@PathVariable Long projectId, Authentication authentication) {
         return designService.getRuleOutput(projectId,(UserDTO) authentication.getPrincipal());
     }
 
-
     @GetMapping(value = "/getDataTypes", produces = "application/json")
     @PreAuthorize("hasRole('USER')")
     public List<RuleDataTypesDTO> getDataTypes( Authentication authentication) {
         return designService.getDataTypes((UserDTO) authentication.getPrincipal());
     }
+
+    /**
+     * POST requests
+     */
+    @PostMapping(value = "/addRuleInputData", produces = "application/json")
+    @PreAuthorize("hasRole('USER')")
+    public PostedResourceDTO addRuleInputData(Authentication authentication, @RequestBody List<RuleInputRequestDTO> rinput) {
+        return designService.postRuleInput(rinput, (UserDTO) authentication.getPrincipal());
+    }
+    @PostMapping(value = "/addRuleOutputData", produces = "application/json")
+    @PreAuthorize("hasRole('USER')")
+    public PostedResourceDTO addRuleOutputData(Authentication authentication, @RequestBody List<RuleOutputRequestDTO> rinput) {
+        return designService.postRuleOutPut(rinput, (UserDTO) authentication.getPrincipal());
+    }
+
 
 }

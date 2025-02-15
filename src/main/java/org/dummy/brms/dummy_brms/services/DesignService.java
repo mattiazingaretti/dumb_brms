@@ -16,4 +16,6 @@ public interface DesignService {
 
 
     List<RuleDataTypesDTO> getDataTypes(UserDTO principal);
+
+    RuleDataResponseDTO getRuleData(Long projectId, UserDTO principal);
 }
