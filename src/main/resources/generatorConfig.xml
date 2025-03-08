@@ -26,6 +26,8 @@
         <table schema="dumb_brms" tableName="rule_input_data_fields"/>
         <table schema="dumb_brms" tableName="rule_output_data"/>
         <table schema="dumb_brms" tableName="rule_output_data_fields"/>
+        <table schema="dumb_brms" tableName="action"/>
+        <table schema="dumb_brms" tableName="action_params"/>
 
     </context>
 </generatorConfiguration>
