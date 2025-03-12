@@ -6,22 +6,22 @@ import org.mybatis.dynamic.sql.AliasableSqlTable;
 import org.mybatis.dynamic.sql.SqlColumn;
 
 public final class RuleInputDataDynamicSqlSupport {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0694292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     public static final RuleInputData ruleInputData = new RuleInputData();
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0694292+01:00", comments="Source field: dumb_brms.rule_input_data.project_id")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source field: dumb_brms.rule_input_data.project_id")
     public static final SqlColumn<Long> projectId = ruleInputData.projectId;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0694292+01:00", comments="Source field: dumb_brms.rule_input_data.rid_class")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source field: dumb_brms.rule_input_data.rid_class")
     public static final SqlColumn<String> ridClass = ruleInputData.ridClass;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0694292+01:00", comments="Source field: dumb_brms.rule_input_data.user_id")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source field: dumb_brms.rule_input_data.user_id")
     public static final SqlColumn<Long> userId = ruleInputData.userId;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source field: dumb_brms.rule_input_data.rid_description")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source field: dumb_brms.rule_input_data.rid_description")
     public static final SqlColumn<String> ridDescription = ruleInputData.ridDescription;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0694292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     public static final class RuleInputData extends AliasableSqlTable<RuleInputData> {
         public final SqlColumn<Long> projectId = column("project_id", JDBCType.BIGINT);
 

@@ -31,10 +31,10 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface ActionParamsMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<ActionParams>, CommonUpdateMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0747194+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     BasicColumn[] selectList = BasicColumn.columnList(action, paramName, paramType, paramDirection);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0734331+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="ActionParamsResult", value = {
         @Result(column="action", property="action", jdbcType=JdbcType.VARCHAR, id=true),
@@ -44,22 +44,22 @@ public interface ActionParamsMapper extends CommonCountMapper, CommonDeleteMappe
     })
     List<ActionParams> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0734331+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("ActionParamsResult")
     Optional<ActionParams> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0734331+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, actionParams, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0734331+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, actionParams, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0734331+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default int deleteByPrimaryKey(String action_, String paramName_) {
         return delete(c -> 
             c.where(action, isEqualTo(action_))
@@ -67,7 +67,7 @@ public interface ActionParamsMapper extends CommonCountMapper, CommonDeleteMappe
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0734331+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default int insert(ActionParams row) {
         return MyBatis3Utils.insert(this::insert, row, actionParams, c ->
             c.map(action).toProperty("action")
@@ -77,7 +77,7 @@ public interface ActionParamsMapper extends CommonCountMapper, CommonDeleteMappe
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0734331+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default int insertMultiple(Collection<ActionParams> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, actionParams, c ->
             c.map(action).toProperty("action")
@@ -87,7 +87,7 @@ public interface ActionParamsMapper extends CommonCountMapper, CommonDeleteMappe
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0734331+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default int insertSelective(ActionParams row) {
         return MyBatis3Utils.insert(this::insert, row, actionParams, c ->
             c.map(action).toPropertyWhenPresent("action", row::getAction)
@@ -97,22 +97,22 @@ public interface ActionParamsMapper extends CommonCountMapper, CommonDeleteMappe
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0747194+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default Optional<ActionParams> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, actionParams, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0747194+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default List<ActionParams> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, actionParams, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0747194+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default List<ActionParams> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, actionParams, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0747194+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default Optional<ActionParams> selectByPrimaryKey(String action_, String paramName_) {
         return selectOne(c ->
             c.where(action, isEqualTo(action_))
@@ -120,12 +120,12 @@ public interface ActionParamsMapper extends CommonCountMapper, CommonDeleteMappe
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0747194+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, actionParams, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0747194+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     static UpdateDSL<UpdateModel> updateAllColumns(ActionParams row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(action).equalTo(row::getAction)
                 .set(paramName).equalTo(row::getParamName)
@@ -133,7 +133,7 @@ public interface ActionParamsMapper extends CommonCountMapper, CommonDeleteMappe
                 .set(paramDirection).equalTo(row::getParamDirection);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0747194+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(ActionParams row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(action).equalToWhenPresent(row::getAction)
                 .set(paramName).equalToWhenPresent(row::getParamName)
@@ -141,7 +141,7 @@ public interface ActionParamsMapper extends CommonCountMapper, CommonDeleteMappe
                 .set(paramDirection).equalToWhenPresent(row::getParamDirection);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0747194+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default int updateByPrimaryKey(ActionParams row) {
         return update(c ->
             c.set(paramType).equalTo(row::getParamType)
@@ -151,7 +151,7 @@ public interface ActionParamsMapper extends CommonCountMapper, CommonDeleteMappe
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0747194+01:00", comments="Source Table: dumb_brms.action_params")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4986901+01:00", comments="Source Table: dumb_brms.action_params")
     default int updateByPrimaryKeySelective(ActionParams row) {
         return update(c ->
             c.set(paramType).equalToWhenPresent(row::getParamType)

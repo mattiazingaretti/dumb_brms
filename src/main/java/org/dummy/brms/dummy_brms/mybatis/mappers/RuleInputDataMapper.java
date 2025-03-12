@@ -31,10 +31,10 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface RuleInputDataMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<RuleInputData>, CommonUpdateMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     BasicColumn[] selectList = BasicColumn.columnList(projectId, ridClass, userId, ridDescription);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="RuleInputDataResult", value = {
         @Result(column="project_id", property="projectId", jdbcType=JdbcType.BIGINT, id=true),
@@ -44,22 +44,22 @@ public interface RuleInputDataMapper extends CommonCountMapper, CommonDeleteMapp
     })
     List<RuleInputData> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("RuleInputDataResult")
     Optional<RuleInputData> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, ruleInputData, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, ruleInputData, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int deleteByPrimaryKey(Long projectId_, String ridClass_) {
         return delete(c -> 
             c.where(projectId, isEqualTo(projectId_))
@@ -67,7 +67,7 @@ public interface RuleInputDataMapper extends CommonCountMapper, CommonDeleteMapp
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int insert(RuleInputData row) {
         return MyBatis3Utils.insert(this::insert, row, ruleInputData, c ->
             c.map(projectId).toProperty("projectId")
@@ -77,7 +77,7 @@ public interface RuleInputDataMapper extends CommonCountMapper, CommonDeleteMapp
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int insertMultiple(Collection<RuleInputData> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, ruleInputData, c ->
             c.map(projectId).toProperty("projectId")
@@ -87,7 +87,7 @@ public interface RuleInputDataMapper extends CommonCountMapper, CommonDeleteMapp
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int insertSelective(RuleInputData row) {
         return MyBatis3Utils.insert(this::insert, row, ruleInputData, c ->
             c.map(projectId).toPropertyWhenPresent("projectId", row::getProjectId)
@@ -97,22 +97,22 @@ public interface RuleInputDataMapper extends CommonCountMapper, CommonDeleteMapp
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default Optional<RuleInputData> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, ruleInputData, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default List<RuleInputData> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, ruleInputData, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default List<RuleInputData> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, ruleInputData, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default Optional<RuleInputData> selectByPrimaryKey(Long projectId_, String ridClass_) {
         return selectOne(c ->
             c.where(projectId, isEqualTo(projectId_))
@@ -120,12 +120,12 @@ public interface RuleInputDataMapper extends CommonCountMapper, CommonDeleteMapp
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, ruleInputData, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     static UpdateDSL<UpdateModel> updateAllColumns(RuleInputData row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(projectId).equalTo(row::getProjectId)
                 .set(ridClass).equalTo(row::getRidClass)
@@ -133,7 +133,7 @@ public interface RuleInputDataMapper extends CommonCountMapper, CommonDeleteMapp
                 .set(ridDescription).equalTo(row::getRidDescription);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(RuleInputData row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(projectId).equalToWhenPresent(row::getProjectId)
                 .set(ridClass).equalToWhenPresent(row::getRidClass)
@@ -141,7 +141,7 @@ public interface RuleInputDataMapper extends CommonCountMapper, CommonDeleteMapp
                 .set(ridDescription).equalToWhenPresent(row::getRidDescription);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4936185+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int updateByPrimaryKey(RuleInputData row) {
         return update(c ->
             c.set(userId).equalTo(row::getUserId)
@@ -151,7 +151,7 @@ public interface RuleInputDataMapper extends CommonCountMapper, CommonDeleteMapp
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-08T18:58:52.0704292+01:00", comments="Source Table: dumb_brms.rule_input_data")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-12T17:50:35.4946188+01:00", comments="Source Table: dumb_brms.rule_input_data")
     default int updateByPrimaryKeySelective(RuleInputData row) {
         return update(c ->
             c.set(userId).equalToWhenPresent(row::getUserId)
