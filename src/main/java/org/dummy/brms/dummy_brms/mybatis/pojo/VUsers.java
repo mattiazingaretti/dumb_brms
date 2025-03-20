@@ -3,67 +3,67 @@ package org.dummy.brms.dummy_brms.mybatis.pojo;
 import jakarta.annotation.Generated;
 
 public class VUsers {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.id")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3979702+01:00", comments="Source field: dumb_brms.v_users.id")
     private Long id;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.username")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3979702+01:00", comments="Source field: dumb_brms.v_users.username")
     private String username;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.psw_hash")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3989719+01:00", comments="Source field: dumb_brms.v_users.psw_hash")
     private String pswHash;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.email")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3989719+01:00", comments="Source field: dumb_brms.v_users.email")
     private String email;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.user_role")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3989719+01:00", comments="Source field: dumb_brms.v_users.user_role")
     private String userRole;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.id")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3979702+01:00", comments="Source field: dumb_brms.v_users.id")
     public Long getId() {
         return id;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.id")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3979702+01:00", comments="Source field: dumb_brms.v_users.id")
     public void setId(Long id) {
         this.id = id;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.username")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3979702+01:00", comments="Source field: dumb_brms.v_users.username")
     public String getUsername() {
         return username;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.username")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3979702+01:00", comments="Source field: dumb_brms.v_users.username")
     public void setUsername(String username) {
         this.username = username;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.psw_hash")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3989719+01:00", comments="Source field: dumb_brms.v_users.psw_hash")
     public String getPswHash() {
         return pswHash;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.psw_hash")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3989719+01:00", comments="Source field: dumb_brms.v_users.psw_hash")
     public void setPswHash(String pswHash) {
         this.pswHash = pswHash;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.email")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3989719+01:00", comments="Source field: dumb_brms.v_users.email")
     public String getEmail() {
         return email;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.email")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3989719+01:00", comments="Source field: dumb_brms.v_users.email")
     public void setEmail(String email) {
         this.email = email;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.user_role")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3989719+01:00", comments="Source field: dumb_brms.v_users.user_role")
     public String getUserRole() {
         return userRole;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0829237+01:00", comments="Source field: dumb_brms.v_users.user_role")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.3989719+01:00", comments="Source field: dumb_brms.v_users.user_role")
     public void setUserRole(String userRole) {
         this.userRole = userRole;
     }

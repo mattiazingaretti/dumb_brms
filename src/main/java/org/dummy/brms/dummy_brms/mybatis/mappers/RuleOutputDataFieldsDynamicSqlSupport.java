@@ -6,22 +6,22 @@ import org.mybatis.dynamic.sql.AliasableSqlTable;
 import org.mybatis.dynamic.sql.SqlColumn;
 
 public final class RuleOutputDataFieldsDynamicSqlSupport {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0972661+01:00", comments="Source Table: dumb_brms.rule_output_data_fields")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4091907+01:00", comments="Source Table: dumb_brms.rule_output_data_fields")
     public static final RuleOutputDataFields ruleOutputDataFields = new RuleOutputDataFields();
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0972661+01:00", comments="Source field: dumb_brms.rule_output_data_fields.rod_field_name")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4091907+01:00", comments="Source field: dumb_brms.rule_output_data_fields.rod_field_name")
     public static final SqlColumn<String> rodFieldName = ruleOutputDataFields.rodFieldName;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0972661+01:00", comments="Source field: dumb_brms.rule_output_data_fields.rod_class")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4091907+01:00", comments="Source field: dumb_brms.rule_output_data_fields.rod_class")
     public static final SqlColumn<String> rodClass = ruleOutputDataFields.rodClass;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0972661+01:00", comments="Source field: dumb_brms.rule_output_data_fields.rod_field_type")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4091907+01:00", comments="Source field: dumb_brms.rule_output_data_fields.rod_field_type")
     public static final SqlColumn<String> rodFieldType = ruleOutputDataFields.rodFieldType;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0972661+01:00", comments="Source field: dumb_brms.rule_output_data_fields.project_id")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4091907+01:00", comments="Source field: dumb_brms.rule_output_data_fields.project_id")
     public static final SqlColumn<Long> projectId = ruleOutputDataFields.projectId;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T11:57:16.0972661+01:00", comments="Source Table: dumb_brms.rule_output_data_fields")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4091907+01:00", comments="Source Table: dumb_brms.rule_output_data_fields")
     public static final class RuleOutputDataFields extends AliasableSqlTable<RuleOutputDataFields> {
         public final SqlColumn<String> rodFieldName = column("rod_field_name", JDBCType.VARCHAR);
 

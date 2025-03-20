@@ -17,6 +17,6 @@ public class ConditionDTO {
     private String field;
     private String operator;
     private String idCondition;
-    private Object value;
+    private Object value; //TO be JSON serialized
     private boolean flgUseIdCondition;
 }

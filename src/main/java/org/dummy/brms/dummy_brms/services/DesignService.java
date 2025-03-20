@@ -1,6 +1,7 @@
 package org.dummy.brms.dummy_brms.services;
 
 
+import org.dummy.brms.dummy_brms.exception.DummyGenericException;
 import org.dummy.brms.dummy_brms.model.dto.*;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface DesignService {
 
     RuleDataResponseDTO getRuleData(Long projectId, UserDTO principal);
 
-    List<RuleDTO> getRules(Long projectId, UserDTO principal);
+    List<RuleDTO> getRules(Long projectId, UserDTO principal) throws DummyGenericException;
 
-    PostedResourceDTO postRule(RuleDTO ruleDto, UserDTO principal);
+    PostedResourceDTO postRule(RuleDTO ruleDto, Long projectId, UserDTO principal) throws DummyGenericException;
 }

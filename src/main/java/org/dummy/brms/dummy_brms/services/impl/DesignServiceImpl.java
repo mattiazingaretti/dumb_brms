@@ -1,9 +1,14 @@
 package org.dummy.brms.dummy_brms.services.impl;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
+import org.dummy.brms.dummy_brms.exception.DummyGenericException;
+import org.dummy.brms.dummy_brms.exception.ErrorCode;
 import org.dummy.brms.dummy_brms.model.dto.*;
 import org.dummy.brms.dummy_brms.mybatis.ext.RuleDataTypesMapperExt;
+import org.dummy.brms.dummy_brms.mybatis.ext.RulesExtMapper;
 import org.dummy.brms.dummy_brms.mybatis.mappers.*;
 import org.dummy.brms.dummy_brms.mybatis.pojo.*;
 import org.dummy.brms.dummy_brms.services.DesignService;
@@ -33,6 +38,21 @@ public class DesignServiceImpl implements DesignService {
 
     @Autowired
     RuleOutputDataFieldsMapper ruleOutputDataFieldsMapper;
+
+    @Autowired
+    RulesExtMapper rulesExtMapper;
+
+    @Autowired
+    RulesMapper rulesMapper;
+
+    @Autowired
+    ProjectsMapper projectsMapper;
+
+    @Autowired
+    RuleConditionsMapper ruleConditionsMapper;
+    @Autowired
+    RuleWorkflowMapper ruleWorkflowMapper;
+
 
     @Override
     public PostedResourceDTO postRuleInput(List<RuleInputRequestDTO> rinput, UserDTO principal) {
@@ -216,13 +236,36 @@ public class DesignServiceImpl implements DesignService {
 
 
     @Override
-    public List<RuleDTO> getRules(Long projectId, UserDTO principal) {
-
+    public List<RuleDTO> getRules(Long projectId, UserDTO principal) throws DummyGenericException {
+        projectsMapper.selectOne(selectModelQueryExpressionDSL -> selectModelQueryExpressionDSL
+                .where(ProjectsDynamicSqlSupport.id, isEqualTo(projectId))
+                .and(ProjectsDynamicSqlSupport.userId, isEqualTo(principal.getId()))).orElseThrow(()-> new DummyGenericException(ErrorCode.INTERNAL_SERVER_ERRROR)); //TODO add unauth exception handelr.
+        //TODO Make dedicated view for this.
+        return List.of();
     }
 
     @Override
-    public PostedResourceDTO postRule(RuleDTO ruleDto, UserDTO principal) {
-        return null;
+    public PostedResourceDTO postRule(RuleDTO ruleDto, Long projectId, UserDTO principal) throws DummyGenericException {
+
+        projectsMapper.selectOne(selectModelQueryExpressionDSL -> selectModelQueryExpressionDSL
+                .where(ProjectsDynamicSqlSupport.id, isEqualTo(projectId))
+                .and(ProjectsDynamicSqlSupport.userId, isEqualTo(principal.getId()))).orElseThrow(()-> new DummyGenericException(ErrorCode.INTERNAL_SERVER_ERRROR)); //TODO add unauth exception handelr.
+
+        ruleDto.getConditions().stream().forEach(c-> {
+            ObjectMapper mapper = new ObjectMapper();
+            String json = null;
+            try {
+                json = mapper.writeValueAsString(c.getValue() );
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException(e);//TODO ADD custom exception
+            }
+            c.setValue(json);
+        });
+        Long postedRuleId = rulesExtMapper.customInsert(ruleDto, projectId);
+
+        return PostedResourceDTO.builder()
+                .success(postedRuleId != null)
+                .build();
     }
 
 

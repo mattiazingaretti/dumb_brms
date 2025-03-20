@@ -2,6 +2,7 @@ package org.dummy.brms.dummy_brms.controllers;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.dummy.brms.dummy_brms.exception.DummyGenericException;
 import org.dummy.brms.dummy_brms.model.dto.*;
 import org.dummy.brms.dummy_brms.services.DesignService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class DesignController {
 
     @GetMapping(value = "/getRules/{projectId}", produces = "application/json")
     @PreAuthorize("hasRole('USER')")
-    public List<RuleDTO> getRules(@PathVariable Long projectId, Authentication authentication) {
+    public List<RuleDTO> getRules(@PathVariable Long projectId, Authentication authentication) throws DummyGenericException {
         return designService.getRules(projectId,(UserDTO) authentication.getPrincipal());
     }
 
@@ -67,10 +68,10 @@ public class DesignController {
         return designService.postRuleOutPut(rinput, (UserDTO) authentication.getPrincipal());
     }
 
-    @PostMapping(value = "/addRuleOutputData/{projectId}", produces = "application/json")
+    @PostMapping(value = "/addRuleInProject/{projectId}", produces = "application/json")
     @PreAuthorize("hasRole('USER')")
-    public PostedResourceDTO addRuleInProject(Authentication authentication, @PathVariable Long projectId, @RequestBody RuleDTO ruleDto ) {
-        return designService.postRule(ruleDto, (UserDTO) authentication.getPrincipal());
+    public PostedResourceDTO addRuleInProject(Authentication authentication, @PathVariable Long projectId, @RequestBody RuleDTO ruleDto ) throws DummyGenericException {
+        return designService.postRule(ruleDto, projectId, (UserDTO) authentication.getPrincipal());
     }
 
 
