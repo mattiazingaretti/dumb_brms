@@ -2,6 +2,7 @@ package org.dummy.brms.dummy_brms.services.impl;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.dummy.brms.dummy_brms.exception.DummyGenericException;
@@ -15,9 +16,12 @@ import org.dummy.brms.dummy_brms.services.DesignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
+import static com.fasterxml.jackson.databind.MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES;
 import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 
 @Slf4j
@@ -53,6 +57,8 @@ public class DesignServiceImpl implements DesignService {
     @Autowired
     RuleWorkflowMapper ruleWorkflowMapper;
 
+    @Autowired
+    VRuleFullMapper vRuleFullMapper;
 
     @Override
     public PostedResourceDTO postRuleInput(List<RuleInputRequestDTO> rinput, UserDTO principal) {
@@ -240,8 +246,51 @@ public class DesignServiceImpl implements DesignService {
         projectsMapper.selectOne(selectModelQueryExpressionDSL -> selectModelQueryExpressionDSL
                 .where(ProjectsDynamicSqlSupport.id, isEqualTo(projectId))
                 .and(ProjectsDynamicSqlSupport.userId, isEqualTo(principal.getId()))).orElseThrow(()-> new DummyGenericException(ErrorCode.INTERNAL_SERVER_ERRROR)); //TODO add unauth exception handelr.
-        //TODO Make dedicated view for this.
-        return List.of();
+
+        List<RuleDTO> toRet = new LinkedList<>();
+        ObjectMapper objectMapper = new ObjectMapper()
+                .enable(ACCEPT_CASE_INSENSITIVE_PROPERTIES)
+                .disable(FAIL_ON_UNKNOWN_PROPERTIES);
+
+        vRuleFullMapper.select(selectModelQueryExpressionDSL ->
+                selectModelQueryExpressionDSL
+                        .where(VRuleFullDynamicSqlSupport.projectId, isEqualTo(projectId))
+        ).forEach(vRuleFull -> {
+            try {
+                List<ConditionDTO> conditions = new ArrayList<>();
+                if (vRuleFull.getConditions() != null) {
+                    String conditionsPgObj = (String) vRuleFull.getConditions();
+                    conditions = objectMapper.readValue(
+                            conditionsPgObj,
+                            new TypeReference<List<ConditionDTO>>() {}
+                    );
+                }
+
+                WorkflowDTO workflow = null;
+                if (vRuleFull.getWorkflow() != null) {
+                    String workflowPgObj = (String) vRuleFull.getWorkflow();
+                    workflow = objectMapper.readValue(
+                            workflowPgObj,
+                            WorkflowDTO.class
+                    );
+                }
+
+                RuleDTO ruleDTO = RuleDTO.builder()
+                        .idRule(vRuleFull.getRuleIdName())
+                        .ruleName(vRuleFull.getRulename())
+                        .salience(vRuleFull.getSalience())
+                        .conditions(conditions)
+                        .workflow(workflow)
+                        .build();
+
+                toRet.add(ruleDTO);
+            } catch (JsonProcessingException e) {
+                throw new RuntimeException("Failed to parse JSON for rule: "
+                        + vRuleFull.getRuleIdName(), e);
+            }
+        });
+
+        return toRet;
     }
 
     @Override

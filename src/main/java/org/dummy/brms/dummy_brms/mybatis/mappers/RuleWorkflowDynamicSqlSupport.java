@@ -6,19 +6,19 @@ import org.mybatis.dynamic.sql.AliasableSqlTable;
 import org.mybatis.dynamic.sql.SqlColumn;
 
 public final class RuleWorkflowDynamicSqlSupport {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4160973+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8724786+01:00", comments="Source Table: dumb_brms.rule_workflow")
     public static final RuleWorkflow ruleWorkflow = new RuleWorkflow();
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4160973+01:00", comments="Source field: dumb_brms.rule_workflow.id_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8724786+01:00", comments="Source field: dumb_brms.rule_workflow.id_workflow")
     public static final SqlColumn<Long> idWorkflow = ruleWorkflow.idWorkflow;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4160973+01:00", comments="Source field: dumb_brms.rule_workflow.workflow_name")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8724786+01:00", comments="Source field: dumb_brms.rule_workflow.workflow_name")
     public static final SqlColumn<String> workflowName = ruleWorkflow.workflowName;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4170992+01:00", comments="Source field: dumb_brms.rule_workflow.rule_id")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8724786+01:00", comments="Source field: dumb_brms.rule_workflow.rule_id")
     public static final SqlColumn<Long> ruleId = ruleWorkflow.ruleId;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4160973+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8724786+01:00", comments="Source Table: dumb_brms.rule_workflow")
     public static final class RuleWorkflow extends AliasableSqlTable<RuleWorkflow> {
         public final SqlColumn<Long> idWorkflow = column("id_workflow", JDBCType.BIGINT);
 

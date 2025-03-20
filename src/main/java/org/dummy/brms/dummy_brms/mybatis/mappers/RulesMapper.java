@@ -31,10 +31,10 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface RulesMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<Rules>, CommonUpdateMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4148744+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     BasicColumn[] selectList = BasicColumn.columnList(ruleId, projectId, salience, rulename, idCondition, idWorkflow, ruleIdName);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4142381+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8694789+01:00", comments="Source Table: dumb_brms.rules")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="RulesResult", value = {
         @Result(column="rule_id", property="ruleId", jdbcType=JdbcType.BIGINT, id=true),
@@ -47,29 +47,29 @@ public interface RulesMapper extends CommonCountMapper, CommonDeleteMapper, Comm
     })
     List<Rules> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4142381+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8694789+01:00", comments="Source Table: dumb_brms.rules")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("RulesResult")
     Optional<Rules> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4142381+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8694789+01:00", comments="Source Table: dumb_brms.rules")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, rules, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4142381+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8694789+01:00", comments="Source Table: dumb_brms.rules")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, rules, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4142381+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     default int deleteByPrimaryKey(Long ruleId_) {
         return delete(c -> 
             c.where(ruleId, isEqualTo(ruleId_))
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4142381+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     default int insert(Rules row) {
         return MyBatis3Utils.insert(this::insert, row, rules, c ->
             c.map(ruleId).toProperty("ruleId")
@@ -82,7 +82,7 @@ public interface RulesMapper extends CommonCountMapper, CommonDeleteMapper, Comm
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4142381+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     default int insertMultiple(Collection<Rules> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, rules, c ->
             c.map(ruleId).toProperty("ruleId")
@@ -95,7 +95,7 @@ public interface RulesMapper extends CommonCountMapper, CommonDeleteMapper, Comm
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4142381+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     default int insertSelective(Rules row) {
         return MyBatis3Utils.insert(this::insert, row, rules, c ->
             c.map(ruleId).toPropertyWhenPresent("ruleId", row::getRuleId)
@@ -108,34 +108,34 @@ public interface RulesMapper extends CommonCountMapper, CommonDeleteMapper, Comm
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4148744+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     default Optional<Rules> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, rules, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4148744+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     default List<Rules> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, rules, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4148744+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     default List<Rules> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, rules, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4148744+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     default Optional<Rules> selectByPrimaryKey(Long ruleId_) {
         return selectOne(c ->
             c.where(ruleId, isEqualTo(ruleId_))
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4148744+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, rules, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4148744+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     static UpdateDSL<UpdateModel> updateAllColumns(Rules row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(ruleId).equalTo(row::getRuleId)
                 .set(projectId).equalTo(row::getProjectId)
@@ -146,7 +146,7 @@ public interface RulesMapper extends CommonCountMapper, CommonDeleteMapper, Comm
                 .set(ruleIdName).equalTo(row::getRuleIdName);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4148744+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(Rules row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(ruleId).equalToWhenPresent(row::getRuleId)
                 .set(projectId).equalToWhenPresent(row::getProjectId)
@@ -157,7 +157,7 @@ public interface RulesMapper extends CommonCountMapper, CommonDeleteMapper, Comm
                 .set(ruleIdName).equalToWhenPresent(row::getRuleIdName);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4148744+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     default int updateByPrimaryKey(Rules row) {
         return update(c ->
             c.set(projectId).equalTo(row::getProjectId)
@@ -170,7 +170,7 @@ public interface RulesMapper extends CommonCountMapper, CommonDeleteMapper, Comm
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T12:50:23.4148744+01:00", comments="Source Table: dumb_brms.rules")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8704799+01:00", comments="Source Table: dumb_brms.rules")
     default int updateByPrimaryKeySelective(Rules row) {
         return update(c ->
             c.set(projectId).equalToWhenPresent(row::getProjectId)
