@@ -214,4 +214,16 @@ public class DesignServiceImpl implements DesignService {
                 .build();
     }
 
+
+    @Override
+    public List<RuleDTO> getRules(Long projectId, UserDTO principal) {
+
+    }
+
+    @Override
+    public PostedResourceDTO postRule(RuleDTO ruleDto, UserDTO principal) {
+        return null;
+    }
+
+
 }

@@ -19,10 +19,16 @@ public class DesignController {
     @Autowired
     DesignService designService;
 
-
     /**
      * GET requests
      */
+
+    @GetMapping(value = "/getRules/{projectId}", produces = "application/json")
+    @PreAuthorize("hasRole('USER')")
+    public List<RuleDTO> getRules(@PathVariable Long projectId, Authentication authentication) {
+        return designService.getRules(projectId,(UserDTO) authentication.getPrincipal());
+    }
+
 
     @GetMapping(value = "/getRuleData/{projectId}", produces = "application/json")
     @PreAuthorize("hasRole('USER')")
@@ -59,6 +65,12 @@ public class DesignController {
     @PreAuthorize("hasRole('USER')")
     public PostedResourceDTO addRuleOutputData(Authentication authentication, @RequestBody List<RuleOutputRequestDTO> rinput) {
         return designService.postRuleOutPut(rinput, (UserDTO) authentication.getPrincipal());
+    }
+
+    @PostMapping(value = "/addRuleOutputData/{projectId}", produces = "application/json")
+    @PreAuthorize("hasRole('USER')")
+    public PostedResourceDTO addRuleInProject(Authentication authentication, @PathVariable Long projectId, @RequestBody RuleDTO ruleDto ) {
+        return designService.postRule(ruleDto, (UserDTO) authentication.getPrincipal());
     }
 
 
