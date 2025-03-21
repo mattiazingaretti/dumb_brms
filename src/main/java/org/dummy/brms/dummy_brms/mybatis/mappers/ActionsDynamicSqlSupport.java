@@ -6,13 +6,13 @@ import org.mybatis.dynamic.sql.AliasableSqlTable;
 import org.mybatis.dynamic.sql.SqlColumn;
 
 public final class ActionsDynamicSqlSupport {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.867478+01:00", comments="Source Table: dumb_brms.actions")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T19:37:53.194104+01:00", comments="Source Table: dumb_brms.actions")
     public static final Actions actions = new Actions();
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.867478+01:00", comments="Source field: dumb_brms.actions.action_name")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T19:37:53.194104+01:00", comments="Source field: dumb_brms.actions.action_name")
     public static final SqlColumn<String> actionName = actions.actionName;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.867478+01:00", comments="Source Table: dumb_brms.actions")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T19:37:53.194104+01:00", comments="Source Table: dumb_brms.actions")
     public static final class Actions extends AliasableSqlTable<Actions> {
         public final SqlColumn<String> actionName = column("action_name", JDBCType.VARCHAR);
 

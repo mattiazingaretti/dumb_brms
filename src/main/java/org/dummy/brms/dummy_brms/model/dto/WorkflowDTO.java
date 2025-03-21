@@ -5,5 +5,6 @@ import lombok.Data;
 
 @Data
 public class WorkflowDTO {
+    private Long idWorkflow;
     private String name;
 }

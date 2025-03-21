@@ -4,6 +4,7 @@ package org.dummy.brms.dummy_brms.services.impl;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.javaparser.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
 import org.dummy.brms.dummy_brms.exception.DummyGenericException;
 import org.dummy.brms.dummy_brms.exception.ErrorCode;
@@ -276,7 +277,7 @@ public class DesignServiceImpl implements DesignService {
                 }
 
                 RuleDTO ruleDTO = RuleDTO.builder()
-                        .idRule(vRuleFull.getRuleIdName())
+                        .idRule(vRuleFull.getRuleId())
                         .ruleName(vRuleFull.getRulename())
                         .salience(vRuleFull.getSalience())
                         .conditions(conditions)
@@ -294,28 +295,97 @@ public class DesignServiceImpl implements DesignService {
     }
 
     @Override
-    public PostedResourceDTO postRule(RuleDTO ruleDto, Long projectId, UserDTO principal) throws DummyGenericException {
+    public PostedResourceDTO postRules(List<RuleDTO> ruleDto, Long projectId, UserDTO principal) throws DummyGenericException {
+        if(Utils.isNullOrEmpty(ruleDto)){
+            throw new DummyGenericException(ErrorCode.INTERNAL_SERVER_ERRROR); //TODO ADD Custom exception handling.
+        }
+        for(RuleDTO r : ruleDto){
+            projectsMapper.selectOne(selectModelQueryExpressionDSL -> selectModelQueryExpressionDSL
+                    .where(ProjectsDynamicSqlSupport.id, isEqualTo(projectId))
+                    .and(ProjectsDynamicSqlSupport.userId, isEqualTo(principal.getId()))).orElseThrow(() ->  new DummyGenericException(ErrorCode.INTERNAL_SERVER_ERRROR)); //TODO add unauth exception handelr.
 
-        projectsMapper.selectOne(selectModelQueryExpressionDSL -> selectModelQueryExpressionDSL
-                .where(ProjectsDynamicSqlSupport.id, isEqualTo(projectId))
-                .and(ProjectsDynamicSqlSupport.userId, isEqualTo(principal.getId()))).orElseThrow(()-> new DummyGenericException(ErrorCode.INTERNAL_SERVER_ERRROR)); //TODO add unauth exception handelr.
 
-        ruleDto.getConditions().stream().forEach(c-> {
-            ObjectMapper mapper = new ObjectMapper();
-            String json = null;
-            try {
-                json = mapper.writeValueAsString(c.getValue() );
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException(e);//TODO ADD custom exception
-            }
-            c.setValue(json);
-        });
-        Long postedRuleId = rulesExtMapper.customInsert(ruleDto, projectId);
+            r.getConditions().stream().forEach(c-> {
+                ObjectMapper mapper = new ObjectMapper();
+                String json = null;
+                try {
+                    json = mapper.writeValueAsString(c.getValue() );
+                } catch (JsonProcessingException e) {
+                    throw new RuntimeException(e);//TODO ADD custom exception
+                }
+                c.setValue(json);
+            });
+            Long postedRuleId = rulesExtMapper.customInsert(r, projectId);
+
+            return PostedResourceDTO.builder()
+                    .success(postedRuleId != null)
+                    .build();
+        }
 
         return PostedResourceDTO.builder()
-                .success(postedRuleId != null)
+                .success(false)
                 .build();
     }
+    private void checkIfRuleIsAccessible(Long projectId, UserDTO principal) throws DummyGenericException {
+        projectsMapper.selectOne(selectModelQueryExpressionDSL -> selectModelQueryExpressionDSL
+                .where(ProjectsDynamicSqlSupport.id, isEqualTo(projectId))
+                .and(ProjectsDynamicSqlSupport.userId, isEqualTo(principal.getId()))).orElseThrow(() ->  new DummyGenericException(ErrorCode.INTERNAL_SERVER_ERRROR)); //TODO add unauth exception handelr.
+    }
+
+
+    @Override
+    public PostedResourceDTO postRule(RuleDTO ruleDTO, Long projectId, UserDTO principal) throws DummyGenericException {
+        this.checkIfRuleIsAccessible(projectId, principal);
+
+        List<Rules> toBeInserted = new LinkedList<>();
+
+        if(ruleDTO.getConditions() == null || ruleDTO.getConditions().isEmpty()){
+            Rules r = new Rules();
+            r.setRulename(ruleDTO.getRuleName());
+            r.setSalience(ruleDTO.getSalience());
+            if(ruleDTO.getWorkflow() != null && ruleDTO.getWorkflow().getIdWorkflow() != null)
+                r.setIdWorkflow(ruleDTO.getWorkflow().getIdWorkflow());
+            toBeInserted.add(r);
+        }else{
+            ruleDTO.getConditions().stream().forEach(c-> {
+                Rules r = new Rules();
+                r.setRulename(ruleDTO.getRuleName());
+                r.setSalience(ruleDTO.getSalience());
+                r.setIdCondition(c.getIdCondition());
+                if(ruleDTO.getWorkflow() != null && ruleDTO.getWorkflow().getIdWorkflow() != null)
+                    r.setIdWorkflow(ruleDTO.getWorkflow().getIdWorkflow());
+                toBeInserted.add(r);
+            });
+        }
+        toBeInserted.stream().forEach(r -> {
+            rulesMapper.insertSelective(r);
+        });
+
+        return PostedResourceDTO.builder()
+                .success(true)
+                .build();
+    }
+
+
+    @Override
+    public PostedResourceDTO updateRule(RuleDTO ruleDTO, Long projectId, UserDTO principal) throws DummyGenericException {
+        this.checkIfRuleIsAccessible(projectId, principal);
+
+        rulesMapper.deleteByPrimaryKey(ruleDTO.getIdRule());
+        return this.postRule(ruleDTO, projectId, principal);
+
+    }
+
+    @Override
+    public PostedResourceDTO updateRules(List<RuleDTO> ruleDTO, Long projectId, UserDTO principal) throws DummyGenericException {
+        for(RuleDTO r : ruleDTO){
+            this.updateRule(r, projectId, principal);
+        }
+        return PostedResourceDTO.builder()
+                .success(true)
+                .build();
+    }
+
 
 
 }

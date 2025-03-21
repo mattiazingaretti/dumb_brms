@@ -7,5 +7,6 @@ import lombok.Getter;
 @Getter
 public class PostedResourceDTO {
     private String msg;
+    private Long idPostedResource;
     private boolean success;
 }

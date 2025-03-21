@@ -29,6 +29,7 @@
         <table schema="dumb_brms" tableName="actions"/>
         <table schema="dumb_brms" tableName="action_params"/>
         <table schema="dumb_brms" tableName="rules"/>
+        <table schema="dumb_brms" tableName="rules_mapping"/>
         <table schema="dumb_brms" tableName="rule_conditions"/>
         <table schema="dumb_brms" tableName="rule_workflow"/>
         <table schema="dumb_brms" tableName="v_rule_full"/>

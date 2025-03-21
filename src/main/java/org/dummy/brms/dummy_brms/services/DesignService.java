@@ -22,5 +22,12 @@ public interface DesignService {
 
     List<RuleDTO> getRules(Long projectId, UserDTO principal) throws DummyGenericException;
 
-    PostedResourceDTO postRule(RuleDTO ruleDto, Long projectId, UserDTO principal) throws DummyGenericException;
+    PostedResourceDTO postRules(List<RuleDTO> ruleDto, Long projectId, UserDTO principal) throws DummyGenericException;
+
+    PostedResourceDTO updateRule(RuleDTO ruleDTO, Long projectId, UserDTO principal) throws DummyGenericException;
+
+    PostedResourceDTO updateRules(List<RuleDTO> rulesDto, Long projectId, UserDTO principal) throws DummyGenericException;
+
+    PostedResourceDTO postRule(RuleDTO ruleDTO, Long projectId, UserDTO principal) throws DummyGenericException;
+
 }

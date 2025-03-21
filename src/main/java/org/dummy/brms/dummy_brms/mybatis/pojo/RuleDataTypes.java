@@ -3,15 +3,15 @@ package org.dummy.brms.dummy_brms.mybatis.pojo;
 import jakarta.annotation.Generated;
 
 public class RuleDataTypes {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8624711+01:00", comments="Source field: dumb_brms.rule_data_types.data_type")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T19:37:53.1891038+01:00", comments="Source field: dumb_brms.rule_data_types.data_type")
     private String dataType;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8624711+01:00", comments="Source field: dumb_brms.rule_data_types.data_type")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T19:37:53.1891038+01:00", comments="Source field: dumb_brms.rule_data_types.data_type")
     public String getDataType() {
         return dataType;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8624711+01:00", comments="Source field: dumb_brms.rule_data_types.data_type")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T19:37:53.1891038+01:00", comments="Source field: dumb_brms.rule_data_types.data_type")
     public void setDataType(String dataType) {
         this.dataType = dataType;
     }

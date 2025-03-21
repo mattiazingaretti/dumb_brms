@@ -13,10 +13,11 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class ConditionDTO {
+    private Long idCondition;
     private String className;
     private String field;
     private String operator;
-    private String idCondition;
+    private String conditionNameId;
     private Object value; //TO be JSON serialized
     private boolean flgUseIdCondition;
 }

@@ -10,7 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class RuleDTO {
-    private String idRule;
+    private Long idRule;
     private int salience;
     private String ruleName;
     private List<ConditionDTO> conditions;

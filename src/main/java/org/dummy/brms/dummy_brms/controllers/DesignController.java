@@ -2,6 +2,7 @@ package org.dummy.brms.dummy_brms.controllers;
 
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.ibatis.annotations.Delete;
 import org.dummy.brms.dummy_brms.exception.DummyGenericException;
 import org.dummy.brms.dummy_brms.model.dto.*;
 import org.dummy.brms.dummy_brms.services.DesignService;
@@ -68,10 +69,23 @@ public class DesignController {
         return designService.postRuleOutPut(rinput, (UserDTO) authentication.getPrincipal());
     }
 
-    @PostMapping(value = "/addRuleInProject/{projectId}", produces = "application/json")
+
+    @PostMapping(value = "/addRuleInProj/{projectId}", produces = "application/json")
     @PreAuthorize("hasRole('USER')")
-    public PostedResourceDTO addRuleInProject(Authentication authentication, @PathVariable Long projectId, @RequestBody RuleDTO ruleDto ) throws DummyGenericException {
-        return designService.postRule(ruleDto, projectId, (UserDTO) authentication.getPrincipal());
+    public PostedResourceDTO addRuleInProj(Authentication authentication, @PathVariable Long projectId, @RequestBody RuleDTO ruleDTO ) throws DummyGenericException {
+        return designService.postRule(ruleDTO, projectId, (UserDTO) authentication.getPrincipal());
+    }
+
+    @DeleteMapping(value = "/deleteRuleInProj/{projectId}", produces = "application/json")
+    @PreAuthorize("hasRole('USER')")
+    public PostedResourceDTO deleteRuleInProj(Authentication authentication, @PathVariable Long projectId, @RequestBody List<RuleDTO> rulesDto ) throws DummyGenericException {
+        return designService.postRules(rulesDto, projectId, (UserDTO) authentication.getPrincipal());
+    }
+
+    @PatchMapping(value = "/patchRulesInProject/{projectId}", produces = "application/json")
+    @PreAuthorize("hasRole('USER')")
+    public PostedResourceDTO patchRulesInProject(Authentication authentication, @PathVariable Long projectId, @RequestBody List<RuleDTO> rulesDto ) throws DummyGenericException {
+        return designService.updateRules(rulesDto, projectId, (UserDTO) authentication.getPrincipal());
     }
 
 

@@ -30,10 +30,10 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface VRuleFullMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<VRuleFull>, CommonUpdateMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     BasicColumn[] selectList = BasicColumn.columnList(ruleIdName, ruleId, projectId, salience, rulename, conditions, workflow);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="VRuleFullResult", value = {
         @Result(column="rule_id_name", property="ruleIdName", jdbcType=JdbcType.VARCHAR),
@@ -46,22 +46,22 @@ public interface VRuleFullMapper extends CommonCountMapper, CommonDeleteMapper, 
     })
     List<VRuleFull> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("VRuleFullResult")
     Optional<VRuleFull> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, VRuleFull, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, VRuleFull, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default int insert(VRuleFull row) {
         return MyBatis3Utils.insert(this::insert, row, VRuleFull, c ->
             c.map(ruleIdName).toProperty("ruleIdName")
@@ -74,7 +74,7 @@ public interface VRuleFullMapper extends CommonCountMapper, CommonDeleteMapper, 
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default int insertMultiple(Collection<VRuleFull> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, VRuleFull, c ->
             c.map(ruleIdName).toProperty("ruleIdName")
@@ -87,7 +87,7 @@ public interface VRuleFullMapper extends CommonCountMapper, CommonDeleteMapper, 
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default int insertSelective(VRuleFull row) {
         return MyBatis3Utils.insert(this::insert, row, VRuleFull, c ->
             c.map(ruleIdName).toPropertyWhenPresent("ruleIdName", row::getRuleIdName)
@@ -100,27 +100,27 @@ public interface VRuleFullMapper extends CommonCountMapper, CommonDeleteMapper, 
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default Optional<VRuleFull> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, VRuleFull, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default List<VRuleFull> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, VRuleFull, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default List<VRuleFull> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, VRuleFull, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, VRuleFull, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     static UpdateDSL<UpdateModel> updateAllColumns(VRuleFull row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(ruleIdName).equalTo(row::getRuleIdName)
                 .set(ruleId).equalTo(row::getRuleId)
@@ -131,7 +131,7 @@ public interface VRuleFullMapper extends CommonCountMapper, CommonDeleteMapper, 
                 .set(workflow).equalTo(row::getWorkflow);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-20T18:57:04.8734788+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-21T18:35:15.2539496+01:00", comments="Source Table: dumb_brms.v_rule_full")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(VRuleFull row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(ruleIdName).equalToWhenPresent(row::getRuleIdName)
                 .set(ruleId).equalToWhenPresent(row::getRuleId)
