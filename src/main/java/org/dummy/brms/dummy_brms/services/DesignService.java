@@ -1,6 +1,7 @@
 package org.dummy.brms.dummy_brms.services;
 
 
+import org.dummy.brms.dummy_brms.exception.DummyBadRequestException;
 import org.dummy.brms.dummy_brms.exception.DummyGenericException;
 import org.dummy.brms.dummy_brms.model.dto.*;
 
@@ -20,14 +21,16 @@ public interface DesignService {
 
     RuleDataResponseDTO getRuleData(Long projectId, UserDTO principal);
 
-    List<RuleDTO> getRules(Long projectId, UserDTO principal) throws DummyGenericException;
+    List<RuleDTO> getAllRulesInProject(Long projectId, UserDTO principal) throws DummyBadRequestException;
 
-    PostedResourceDTO postRules(List<RuleDTO> ruleDto, Long projectId, UserDTO principal) throws DummyGenericException;
+    //Single Rule CRUD Methods
+    RuleDTO postSingleRuleFull(RuleDTO rule, Long projectId, UserDTO principal) throws DummyBadRequestException, DummyGenericException;
 
-    PostedResourceDTO updateRule(RuleDTO ruleDTO, Long projectId, UserDTO principal) throws DummyGenericException;
+    void deleteRuleFull(RuleDTO rule, Long projectId, UserDTO principal) throws DummyBadRequestException, DummyGenericException;
 
-    PostedResourceDTO updateRules(List<RuleDTO> rulesDto, Long projectId, UserDTO principal) throws DummyGenericException;
+    RuleDTO updateSingleRuleFull(RuleDTO rule, Long projectId, UserDTO principal) throws DummyGenericException, DummyBadRequestException;
 
-    PostedResourceDTO postRule(RuleDTO ruleDTO, Long projectId, UserDTO principal) throws DummyGenericException;
+    List<RuleDTO> updateRulesFull(List<RuleDTO> rules, Long projectId, UserDTO principal) throws DummyGenericException, DummyBadRequestException;
 
+    void deleteRulesFull(List<RuleDTO> rules, Long projectId, UserDTO principal) throws DummyGenericException, DummyBadRequestException;
 }

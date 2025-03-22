@@ -2,7 +2,7 @@ package org.dummy.brms.dummy_brms.controllers;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Delete;
+import org.dummy.brms.dummy_brms.exception.DummyBadRequestException;
 import org.dummy.brms.dummy_brms.exception.DummyGenericException;
 import org.dummy.brms.dummy_brms.model.dto.*;
 import org.dummy.brms.dummy_brms.services.DesignService;
@@ -25,10 +25,10 @@ public class DesignController {
      * GET requests
      */
 
-    @GetMapping(value = "/getRules/{projectId}", produces = "application/json")
+    @GetMapping(value = "/getAllRulesInProject/{projectId}", produces = "application/json")
     @PreAuthorize("hasRole('USER')")
-    public List<RuleDTO> getRules(@PathVariable Long projectId, Authentication authentication) throws DummyGenericException {
-        return designService.getRules(projectId,(UserDTO) authentication.getPrincipal());
+    public List<RuleDTO> getAllRulesInProject(@PathVariable Long projectId, Authentication authentication) throws DummyBadRequestException {
+        return designService.getAllRulesInProject(projectId,(UserDTO) authentication.getPrincipal());
     }
 
 
@@ -72,20 +72,20 @@ public class DesignController {
 
     @PostMapping(value = "/addRuleInProj/{projectId}", produces = "application/json")
     @PreAuthorize("hasRole('USER')")
-    public PostedResourceDTO addRuleInProj(Authentication authentication, @PathVariable Long projectId, @RequestBody RuleDTO ruleDTO ) throws DummyGenericException {
-        return designService.postRule(ruleDTO, projectId, (UserDTO) authentication.getPrincipal());
+    public RuleDTO addRuleInProj(Authentication authentication, @PathVariable Long projectId, @RequestBody RuleDTO ruleDTO ) throws DummyGenericException, DummyBadRequestException {
+        return designService.postSingleRuleFull(ruleDTO, projectId, (UserDTO) authentication.getPrincipal());
     }
 
     @DeleteMapping(value = "/deleteRuleInProj/{projectId}", produces = "application/json")
     @PreAuthorize("hasRole('USER')")
-    public PostedResourceDTO deleteRuleInProj(Authentication authentication, @PathVariable Long projectId, @RequestBody List<RuleDTO> rulesDto ) throws DummyGenericException {
-        return designService.postRules(rulesDto, projectId, (UserDTO) authentication.getPrincipal());
+    public void deleteRuleInProj(Authentication authentication, @PathVariable Long projectId, @RequestBody List<RuleDTO> rulesDto ) throws DummyGenericException, DummyBadRequestException {
+        designService.deleteRulesFull(rulesDto, projectId, (UserDTO) authentication.getPrincipal());
     }
 
     @PatchMapping(value = "/patchRulesInProject/{projectId}", produces = "application/json")
     @PreAuthorize("hasRole('USER')")
-    public PostedResourceDTO patchRulesInProject(Authentication authentication, @PathVariable Long projectId, @RequestBody List<RuleDTO> rulesDto ) throws DummyGenericException {
-        return designService.updateRules(rulesDto, projectId, (UserDTO) authentication.getPrincipal());
+    public List<RuleDTO> patchRulesInProject(Authentication authentication, @PathVariable Long projectId, @RequestBody List<RuleDTO> rulesDto ) throws DummyGenericException, DummyBadRequestException {
+        return designService.updateRulesFull(rulesDto, projectId, (UserDTO) authentication.getPrincipal());
     }
 
 

@@ -2,27 +2,25 @@ package org.dummy.brms.dummy_brms.services.impl;
 
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.javaparser.utils.Utils;
 import lombok.extern.slf4j.Slf4j;
+import org.dummy.brms.dummy_brms.exception.DummyBadRequestException;
 import org.dummy.brms.dummy_brms.exception.DummyGenericException;
 import org.dummy.brms.dummy_brms.exception.ErrorCode;
 import org.dummy.brms.dummy_brms.model.dto.*;
 import org.dummy.brms.dummy_brms.mybatis.ext.RuleDataTypesMapperExt;
-import org.dummy.brms.dummy_brms.mybatis.ext.RulesExtMapper;
 import org.dummy.brms.dummy_brms.mybatis.mappers.*;
 import org.dummy.brms.dummy_brms.mybatis.pojo.*;
 import org.dummy.brms.dummy_brms.services.DesignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
-import static com.fasterxml.jackson.databind.MapperFeature.ACCEPT_CASE_INSENSITIVE_PROPERTIES;
 import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 
 @Slf4j
@@ -44,8 +42,6 @@ public class DesignServiceImpl implements DesignService {
     @Autowired
     RuleOutputDataFieldsMapper ruleOutputDataFieldsMapper;
 
-    @Autowired
-    RulesExtMapper rulesExtMapper;
 
     @Autowired
     RulesMapper rulesMapper;
@@ -57,9 +53,11 @@ public class DesignServiceImpl implements DesignService {
     RuleConditionsMapper ruleConditionsMapper;
     @Autowired
     RuleWorkflowMapper ruleWorkflowMapper;
-
+    @Autowired
+    RulesMappingMapper rulesMappingMapper;
     @Autowired
     VRuleFullMapper vRuleFullMapper;
+
 
     @Override
     public PostedResourceDTO postRuleInput(List<RuleInputRequestDTO> rinput, UserDTO principal) {
@@ -242,149 +240,186 @@ public class DesignServiceImpl implements DesignService {
     }
 
 
+    //TODO test this function
     @Override
-    public List<RuleDTO> getRules(Long projectId, UserDTO principal) throws DummyGenericException {
-        projectsMapper.selectOne(selectModelQueryExpressionDSL -> selectModelQueryExpressionDSL
-                .where(ProjectsDynamicSqlSupport.id, isEqualTo(projectId))
-                .and(ProjectsDynamicSqlSupport.userId, isEqualTo(principal.getId()))).orElseThrow(()-> new DummyGenericException(ErrorCode.INTERNAL_SERVER_ERRROR)); //TODO add unauth exception handelr.
+    public List<RuleDTO> getAllRulesInProject(Long projectId, UserDTO principal) throws DummyBadRequestException {
+        if(projectId == null ){
+            throw new DummyBadRequestException(ErrorCode.MISSING_PROJECT_ID);
+        }
 
         List<RuleDTO> toRet = new LinkedList<>();
-        ObjectMapper objectMapper = new ObjectMapper()
-                .enable(ACCEPT_CASE_INSENSITIVE_PROPERTIES)
-                .disable(FAIL_ON_UNKNOWN_PROPERTIES);
+        if(this.isProjectAccessibleByTheCurrentUser(projectId, principal)){
+            List<VRuleFull> viewResults = vRuleFullMapper.select(selectModelQueryExpressionDSL ->
+               selectModelQueryExpressionDSL
+                       .where(VRuleFullDynamicSqlSupport.projectId, isEqualTo(projectId))
+            );
 
-        vRuleFullMapper.select(selectModelQueryExpressionDSL ->
-                selectModelQueryExpressionDSL
-                        .where(VRuleFullDynamicSqlSupport.projectId, isEqualTo(projectId))
-        ).forEach(vRuleFull -> {
-            try {
-                List<ConditionDTO> conditions = new ArrayList<>();
-                if (vRuleFull.getConditions() != null) {
-                    String conditionsPgObj = (String) vRuleFull.getConditions();
-                    conditions = objectMapper.readValue(
-                            conditionsPgObj,
-                            new TypeReference<List<ConditionDTO>>() {}
-                    );
-                }
+            Map<Long, List<VRuleFull>> groupedByRuleId = viewResults.stream()
+                    .collect(Collectors.groupingBy(VRuleFull::getRuleId));
 
-                WorkflowDTO workflow = null;
-                if (vRuleFull.getWorkflow() != null) {
-                    String workflowPgObj = (String) vRuleFull.getWorkflow();
-                    workflow = objectMapper.readValue(
-                            workflowPgObj,
-                            WorkflowDTO.class
-                    );
-                }
+            toRet = groupedByRuleId.entrySet().stream()
+                    .map(entry -> {
+                        Long ruleId = entry.getKey();
+                        List<VRuleFull> group = entry.getValue();
 
-                RuleDTO ruleDTO = RuleDTO.builder()
-                        .idRule(vRuleFull.getRuleId())
-                        .ruleName(vRuleFull.getRulename())
-                        .salience(vRuleFull.getSalience())
-                        .conditions(conditions)
-                        .workflow(workflow)
-                        .build();
+                        RuleDTO ruleDTO = new RuleDTO();
+                        ruleDTO.setIdRule(ruleId);
+                        ruleDTO.setSalience(group.get(0).getSalience());
+                        ruleDTO.setRuleName(group.get(0).getRuleName());
 
-                toRet.add(ruleDTO);
-            } catch (JsonProcessingException e) {
-                throw new RuntimeException("Failed to parse JSON for rule: "
-                        + vRuleFull.getRuleIdName(), e);
+                        List<ConditionDTO> conditions = group.stream()
+                                .filter(vRuleFull -> vRuleFull.getClassname() != null) // Filter out null conditions
+                                .map(this::toConditionDTO)
+                                .collect(Collectors.toList());
+                        ruleDTO.setConditions(conditions);
+
+                        Optional<VRuleFull> workflowEntry = group.stream()
+                                .filter(vRuleFull -> vRuleFull.getIdWorkflow() != null)
+                                .findFirst();
+                        workflowEntry.ifPresent(vRuleFull -> {
+                            WorkflowDTO workflowDTO = new WorkflowDTO();
+                            workflowDTO.setIdWorkflow(vRuleFull.getIdWorkflow());
+                            workflowDTO.setName(vRuleFull.getWorkflowName());
+                            workflowDTO.setLastModified(vRuleFull.getLastUpdateWorkflow());
+                            ruleDTO.setWorkflow(workflowDTO);
+                        });
+
+                        return ruleDTO;
+                    })
+                    .collect(Collectors.toList());
+        }
+        return toRet;
+    }
+    private ConditionDTO toConditionDTO(VRuleFull vRuleFull) {
+        ConditionDTO conditionDTO = new ConditionDTO();
+        conditionDTO.setIdCondition(vRuleFull.getConditionNameId() != null ? Long.valueOf(vRuleFull.getConditionNameId()) : null);
+        conditionDTO.setClassName(vRuleFull.getClassname());
+        conditionDTO.setField(vRuleFull.getField());
+        conditionDTO.setOperator(vRuleFull.getOperator());
+        conditionDTO.setConditionNameId(vRuleFull.getConditionNameId());
+        conditionDTO.setFlgUseIdCondition(Boolean.TRUE.equals(vRuleFull.getFlgUseIdConditions()));
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            conditionDTO.setValue(objectMapper.writeValueAsString(vRuleFull.getValue()));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Failed to serialize value to JSON", e);
+        }
+
+        return conditionDTO;
+    }
+
+
+
+    @Override
+    public RuleDTO postSingleRuleFull(RuleDTO ruleDTO, Long projectId, UserDTO principal) throws DummyBadRequestException, DummyGenericException {
+        if(ruleDTO == null ){
+            throw new DummyBadRequestException(ErrorCode.MISSING_RULES_TO_BE_POSTED);
+        }
+
+        if(this.isProjectAccessibleByTheCurrentUser(projectId,  principal)){
+            Rules r = new Rules();
+            r.setRuleName(ruleDTO.getRuleName());
+            r.setSalience(ruleDTO.getSalience());
+            r.setProjectId(projectId);
+            rulesMapper.insertSelective(r);
+
+            Long ruleId = r.getRuleId();
+            if(ruleId == null){
+                throw new DummyGenericException(ErrorCode.FAILED_TO_INSERT_RULE);
             }
-        });
+            ruleDTO.setIdRule(ruleId);
 
+            List<ConditionDTO> conditions = ruleDTO.getConditions();
+            List<Long> conditionsIds = new LinkedList<>();
+            if(conditions != null && !conditions.isEmpty()){
+                conditions.forEach(c->{
+                    RuleConditions rc = new RuleConditions();
+                    rc.setRuleId(ruleId);
+                    rc.setClassname(c.getClassName());
+                    rc.setField(c.getField());
+                    rc.setOperator(c.getOperator());
+                    rc.setConditionNameId(c.getConditionNameId());
+                    rc.setFlgUseIdConditions(c.isFlgUseIdCondition());
+                    rc.setValue(c.getValue());
+                    ruleConditionsMapper.insertSelective(rc);
+                    conditionsIds.add(rc.getIdCondition());
+                });
+            }
+            WorkflowDTO workflowDTO = ruleDTO.getWorkflow();
+            Long workFlowId;
+            if(workflowDTO != null && workflowDTO.getName() != null){
+                RuleWorkflow pw = new RuleWorkflow();
+                pw.setRuleId(ruleId);
+                pw.setWorkflowName(workflowDTO.getName());
+                pw.setLastUpdateWorkflow(workflowDTO.getLastModified());
+                ruleWorkflowMapper.insertSelective(pw);
+                workFlowId = pw.getIdWorkflow();
+            } else {
+                workFlowId = null;
+            }
+            if(conditionsIds != null && !conditionsIds.isEmpty() || workFlowId != null){
+                conditionsIds.forEach(c->{
+                    RulesMapping rulesMapping = new RulesMapping();
+                    rulesMapping.setRuleId(ruleId);
+                    rulesMapping.setIdCondition(c);
+                    rulesMapping.setIdWorkflow(workFlowId);
+                    rulesMappingMapper.insert(rulesMapping);
+                });
+            }
+
+        }
+        return ruleDTO;
+    }
+
+    @Override
+    public void deleteRuleFull(RuleDTO rule, Long projectId, UserDTO principal) throws DummyBadRequestException, DummyGenericException {
+        if(rule == null || rule.getIdRule() == null){
+            throw new DummyBadRequestException(ErrorCode.MISSING_RULES_TO_BE_POSTED);
+        }
+
+        if(this.isProjectAccessibleByTheCurrentUser(projectId,  principal)){
+            rulesMapper.deleteByPrimaryKey(rule.getIdRule());
+            ruleConditionsMapper.delete(deleteModelQueryExpressionDSL ->
+                    deleteModelQueryExpressionDSL
+                            .where(RuleConditionsDynamicSqlSupport.ruleId, isEqualTo(rule.getIdRule())));
+            rulesMappingMapper.delete(deleteModelQueryExpressionDSL ->
+                    deleteModelQueryExpressionDSL.where(RulesMappingDynamicSqlSupport.ruleId, isEqualTo(rule.getIdRule())));
+        }
+
+    }
+
+    @Override
+    public RuleDTO updateSingleRuleFull(RuleDTO rule, Long projectId, UserDTO principal) throws DummyGenericException, DummyBadRequestException {
+        this.deleteRuleFull(rule, projectId, principal);
+        return this.postSingleRuleFull(rule, projectId, principal);
+    }
+
+
+    @Override
+    public List<RuleDTO> updateRulesFull(List<RuleDTO> rules, Long projectId, UserDTO principal) throws DummyGenericException, DummyBadRequestException {
+        List<RuleDTO> toRet = new LinkedList<>();
+        for(RuleDTO rule: rules){
+            toRet.add(this.updateSingleRuleFull(rule, projectId, principal));
+        }
         return toRet;
     }
 
     @Override
-    public PostedResourceDTO postRules(List<RuleDTO> ruleDto, Long projectId, UserDTO principal) throws DummyGenericException {
-        if(Utils.isNullOrEmpty(ruleDto)){
-            throw new DummyGenericException(ErrorCode.INTERNAL_SERVER_ERRROR); //TODO ADD Custom exception handling.
+    public void deleteRulesFull(List<RuleDTO> rules, Long projectId, UserDTO principal) throws DummyGenericException, DummyBadRequestException {
+        for(RuleDTO rule: rules){
+            this.deleteRuleFull(rule, projectId, principal);
         }
-        for(RuleDTO r : ruleDto){
-            projectsMapper.selectOne(selectModelQueryExpressionDSL -> selectModelQueryExpressionDSL
-                    .where(ProjectsDynamicSqlSupport.id, isEqualTo(projectId))
-                    .and(ProjectsDynamicSqlSupport.userId, isEqualTo(principal.getId()))).orElseThrow(() ->  new DummyGenericException(ErrorCode.INTERNAL_SERVER_ERRROR)); //TODO add unauth exception handelr.
-
-
-            r.getConditions().stream().forEach(c-> {
-                ObjectMapper mapper = new ObjectMapper();
-                String json = null;
-                try {
-                    json = mapper.writeValueAsString(c.getValue() );
-                } catch (JsonProcessingException e) {
-                    throw new RuntimeException(e);//TODO ADD custom exception
-                }
-                c.setValue(json);
-            });
-            Long postedRuleId = rulesExtMapper.customInsert(r, projectId);
-
-            return PostedResourceDTO.builder()
-                    .success(postedRuleId != null)
-                    .build();
-        }
-
-        return PostedResourceDTO.builder()
-                .success(false)
-                .build();
     }
-    private void checkIfRuleIsAccessible(Long projectId, UserDTO principal) throws DummyGenericException {
-        projectsMapper.selectOne(selectModelQueryExpressionDSL -> selectModelQueryExpressionDSL
+
+
+    private boolean isProjectAccessibleByTheCurrentUser(Long projectId, UserDTO principal) throws DummyBadRequestException {
+        Projects proj = projectsMapper.selectOne(selectModelQueryExpressionDSL -> selectModelQueryExpressionDSL
                 .where(ProjectsDynamicSqlSupport.id, isEqualTo(projectId))
-                .and(ProjectsDynamicSqlSupport.userId, isEqualTo(principal.getId()))).orElseThrow(() ->  new DummyGenericException(ErrorCode.INTERNAL_SERVER_ERRROR)); //TODO add unauth exception handelr.
+                .and(ProjectsDynamicSqlSupport.userId, isEqualTo(principal.getId()))).orElseThrow(() ->  new DummyBadRequestException(ErrorCode.UNAUTHORIZED_PROJECT_FOR_CURRENT_USER));
+        return proj != null;
     }
 
-
-    @Override
-    public PostedResourceDTO postRule(RuleDTO ruleDTO, Long projectId, UserDTO principal) throws DummyGenericException {
-        this.checkIfRuleIsAccessible(projectId, principal);
-
-        List<Rules> toBeInserted = new LinkedList<>();
-
-        if(ruleDTO.getConditions() == null || ruleDTO.getConditions().isEmpty()){
-            Rules r = new Rules();
-            r.setRulename(ruleDTO.getRuleName());
-            r.setSalience(ruleDTO.getSalience());
-            if(ruleDTO.getWorkflow() != null && ruleDTO.getWorkflow().getIdWorkflow() != null)
-                r.setIdWorkflow(ruleDTO.getWorkflow().getIdWorkflow());
-            toBeInserted.add(r);
-        }else{
-            ruleDTO.getConditions().stream().forEach(c-> {
-                Rules r = new Rules();
-                r.setRulename(ruleDTO.getRuleName());
-                r.setSalience(ruleDTO.getSalience());
-                r.setIdCondition(c.getIdCondition());
-                if(ruleDTO.getWorkflow() != null && ruleDTO.getWorkflow().getIdWorkflow() != null)
-                    r.setIdWorkflow(ruleDTO.getWorkflow().getIdWorkflow());
-                toBeInserted.add(r);
-            });
-        }
-        toBeInserted.stream().forEach(r -> {
-            rulesMapper.insertSelective(r);
-        });
-
-        return PostedResourceDTO.builder()
-                .success(true)
-                .build();
-    }
-
-
-    @Override
-    public PostedResourceDTO updateRule(RuleDTO ruleDTO, Long projectId, UserDTO principal) throws DummyGenericException {
-        this.checkIfRuleIsAccessible(projectId, principal);
-
-        rulesMapper.deleteByPrimaryKey(ruleDTO.getIdRule());
-        return this.postRule(ruleDTO, projectId, principal);
-
-    }
-
-    @Override
-    public PostedResourceDTO updateRules(List<RuleDTO> ruleDTO, Long projectId, UserDTO principal) throws DummyGenericException {
-        for(RuleDTO r : ruleDTO){
-            this.updateRule(r, projectId, principal);
-        }
-        return PostedResourceDTO.builder()
-                .success(true)
-                .build();
-    }
 
 
 
