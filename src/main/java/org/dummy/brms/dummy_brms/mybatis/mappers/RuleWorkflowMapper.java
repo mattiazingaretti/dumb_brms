@@ -34,20 +34,20 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface RuleWorkflowMapper extends CommonCountMapper, CommonDeleteMapper, CommonUpdateMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     BasicColumn[] selectList = BasicColumn.columnList(idWorkflow, workflowName, ruleId, lastUpdateWorkflow);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9935327+01:00", comments="Source Table: dumb_brms.rule_workflow")
     @InsertProvider(type=SqlProviderAdapter.class, method="insert")
     @Options(useGeneratedKeys=true,keyProperty="row.idWorkflow")
     int insert(InsertStatementProvider<RuleWorkflow> insertStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9935327+01:00", comments="Source Table: dumb_brms.rule_workflow")
     @InsertProvider(type=SqlProviderAdapter.class, method="insertMultipleWithGeneratedKeys")
     @Options(useGeneratedKeys=true,keyProperty="records.idWorkflow")
     int insertMultiple(@Param("insertStatement") String insertStatement, @Param("records") List<RuleWorkflow> records);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9935327+01:00", comments="Source Table: dumb_brms.rule_workflow")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="RuleWorkflowResult", value = {
         @Result(column="id_workflow", property="idWorkflow", jdbcType=JdbcType.BIGINT, id=true),
@@ -57,29 +57,29 @@ public interface RuleWorkflowMapper extends CommonCountMapper, CommonDeleteMappe
     })
     List<RuleWorkflow> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9935327+01:00", comments="Source Table: dumb_brms.rule_workflow")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("RuleWorkflowResult")
     Optional<RuleWorkflow> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9935327+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, ruleWorkflow, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, ruleWorkflow, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default int deleteByPrimaryKey(Long idWorkflow_) {
         return delete(c -> 
             c.where(idWorkflow, isEqualTo(idWorkflow_))
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default int insert(RuleWorkflow row) {
         return MyBatis3Utils.insert(this::insert, row, ruleWorkflow, c ->
             c.map(workflowName).toProperty("workflowName")
@@ -88,7 +88,7 @@ public interface RuleWorkflowMapper extends CommonCountMapper, CommonDeleteMappe
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default int insertMultiple(Collection<RuleWorkflow> records) {
         return MyBatis3Utils.insertMultipleWithGeneratedKeys(this::insertMultiple, records, ruleWorkflow, c ->
             c.map(workflowName).toProperty("workflowName")
@@ -97,7 +97,7 @@ public interface RuleWorkflowMapper extends CommonCountMapper, CommonDeleteMappe
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default int insertSelective(RuleWorkflow row) {
         return MyBatis3Utils.insert(this::insert, row, ruleWorkflow, c ->
             c.map(workflowName).toPropertyWhenPresent("workflowName", row::getWorkflowName)
@@ -106,48 +106,48 @@ public interface RuleWorkflowMapper extends CommonCountMapper, CommonDeleteMappe
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default Optional<RuleWorkflow> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, ruleWorkflow, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default List<RuleWorkflow> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, ruleWorkflow, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default List<RuleWorkflow> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, ruleWorkflow, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default Optional<RuleWorkflow> selectByPrimaryKey(Long idWorkflow_) {
         return selectOne(c ->
             c.where(idWorkflow, isEqualTo(idWorkflow_))
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, ruleWorkflow, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     static UpdateDSL<UpdateModel> updateAllColumns(RuleWorkflow row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(workflowName).equalTo(row::getWorkflowName)
                 .set(ruleId).equalTo(row::getRuleId)
                 .set(lastUpdateWorkflow).equalTo(row::getLastUpdateWorkflow);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(RuleWorkflow row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(workflowName).equalToWhenPresent(row::getWorkflowName)
                 .set(ruleId).equalToWhenPresent(row::getRuleId)
                 .set(lastUpdateWorkflow).equalToWhenPresent(row::getLastUpdateWorkflow);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default int updateByPrimaryKey(RuleWorkflow row) {
         return update(c ->
             c.set(workflowName).equalTo(row::getWorkflowName)
@@ -157,7 +157,7 @@ public interface RuleWorkflowMapper extends CommonCountMapper, CommonDeleteMappe
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.7377785+01:00", comments="Source Table: dumb_brms.rule_workflow")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.rule_workflow")
     default int updateByPrimaryKeySelective(RuleWorkflow row) {
         return update(c ->
             c.set(workflowName).equalToWhenPresent(row::getWorkflowName)

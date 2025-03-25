@@ -1,5 +1,6 @@
 package org.dummy.brms.dummy_brms.services.impl;
 
+import org.postgresql.util.PGobject;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -292,19 +293,13 @@ public class DesignServiceImpl implements DesignService {
     }
     private ConditionDTO toConditionDTO(VRuleFull vRuleFull) {
         ConditionDTO conditionDTO = new ConditionDTO();
-        conditionDTO.setIdCondition(vRuleFull.getConditionNameId() != null ? Long.valueOf(vRuleFull.getConditionNameId()) : null);
+        conditionDTO.setIdCondition(vRuleFull.getIdCondition());
         conditionDTO.setClassName(vRuleFull.getClassname());
         conditionDTO.setField(vRuleFull.getField());
         conditionDTO.setOperator(vRuleFull.getOperator());
         conditionDTO.setConditionNameId(vRuleFull.getConditionNameId());
         conditionDTO.setFlgUseIdCondition(Boolean.TRUE.equals(vRuleFull.getFlgUseIdConditions()));
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            conditionDTO.setValue(objectMapper.writeValueAsString(vRuleFull.getValue()));
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException("Failed to serialize value to JSON", e);
-        }
+        conditionDTO.setValue(vRuleFull.getValue());
 
         return conditionDTO;
     }
@@ -343,6 +338,7 @@ public class DesignServiceImpl implements DesignService {
                     rc.setFlgUseIdConditions(c.isFlgUseIdCondition());
                     rc.setValue(c.getValue());
                     ruleConditionsMapper.insertSelective(rc);
+                    c.setIdCondition(rc.getIdCondition());
                     conditionsIds.add(rc.getIdCondition());
                 });
             }
@@ -379,12 +375,12 @@ public class DesignServiceImpl implements DesignService {
         }
 
         if(this.isProjectAccessibleByTheCurrentUser(projectId,  principal)){
-            rulesMapper.deleteByPrimaryKey(rule.getIdRule());
+            rulesMappingMapper.delete(deleteModelQueryExpressionDSL ->
+                    deleteModelQueryExpressionDSL.where(RulesMappingDynamicSqlSupport.ruleId, isEqualTo(rule.getIdRule())));
             ruleConditionsMapper.delete(deleteModelQueryExpressionDSL ->
                     deleteModelQueryExpressionDSL
                             .where(RuleConditionsDynamicSqlSupport.ruleId, isEqualTo(rule.getIdRule())));
-            rulesMappingMapper.delete(deleteModelQueryExpressionDSL ->
-                    deleteModelQueryExpressionDSL.where(RulesMappingDynamicSqlSupport.ruleId, isEqualTo(rule.getIdRule())));
+            rulesMapper.deleteByPrimaryKey(rule.getIdRule());
         }
 
     }

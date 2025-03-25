@@ -18,6 +18,6 @@ public class ConditionDTO {
     private String field;
     private String operator;
     private String conditionNameId;
-    private Object value; //TO be JSON serialized
+    private String value; //TO be JSON serialized
     private boolean flgUseIdCondition;
 }

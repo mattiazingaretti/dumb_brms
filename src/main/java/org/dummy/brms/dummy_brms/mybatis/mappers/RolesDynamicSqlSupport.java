@@ -6,13 +6,13 @@ import org.mybatis.dynamic.sql.AliasableSqlTable;
 import org.mybatis.dynamic.sql.SqlColumn;
 
 public final class RolesDynamicSqlSupport {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.719272+01:00", comments="Source Table: dumb_brms.roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9695319+01:00", comments="Source Table: dumb_brms.roles")
     public static final Roles roles = new Roles();
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.719272+01:00", comments="Source field: dumb_brms.roles.role")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9695319+01:00", comments="Source field: dumb_brms.roles.role")
     public static final SqlColumn<String> role = roles.role;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-22T21:37:14.719272+01:00", comments="Source Table: dumb_brms.roles")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9695319+01:00", comments="Source Table: dumb_brms.roles")
     public static final class Roles extends AliasableSqlTable<Roles> {
         public final SqlColumn<String> role = column("role", JDBCType.VARCHAR);
 

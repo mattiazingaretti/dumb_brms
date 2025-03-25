@@ -34,6 +34,7 @@
         <table schema="dumb_brms" tableName="rules_mapping"/>
         <table schema="dumb_brms" tableName="rule_conditions">
             <generatedKey column="id_condition" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="value" jdbcType="OTHER" typeHandler="org.dummy.brms.dummy_brms.mybatis.handlers.JsonTypeHandler"/>
         </table>
         <table schema="dumb_brms" tableName="rule_workflow">
             <generatedKey column="id_workflow" sqlStatement="JDBC" identity="true"/>
