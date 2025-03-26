@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="PostgreSQLContext" targetRuntime="MyBatis3DynamicSql">
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://localhost:5432/dumb_brms"
+                        userId="postgres"
+                        password="postgres"/>
+
+
+        <javaModelGenerator targetPackage="org.dummy.brms.dummy_brms.mybatis.pojo" targetProject="src/main/java"/>
+
+        <javaClientGenerator targetPackage="org.dummy.brms.dummy_brms.mybatis.mappers" targetProject="src/main/java"/>
+
+
+        <table schema="dumb_brms" tableName="user_roles" />
+        <table schema="dumb_brms" tableName="roles" />
+        <table schema="dumb_brms" tableName="users" />
+        <table schema="dumb_brms" tableName="v_users" />
+        <table schema="dumb_brms" tableName="ct_elements" />
+        <table schema="dumb_brms" tableName="group_codes" />
+        <table schema="dumb_brms" tableName="projects"/>
+        <table schema="dumb_brms" tableName="rule_data_types"/>
+        <table schema="dumb_brms" tableName="rule_input_data"/>
+        <table schema="dumb_brms" tableName="rule_input_data_fields"/>
+        <table schema="dumb_brms" tableName="rule_output_data"/>
+        <table schema="dumb_brms" tableName="rule_output_data_fields"/>
+        <table schema="dumb_brms" tableName="actions"/>
+        <table schema="dumb_brms" tableName="action_params"/>
+        <table schema="dumb_brms" tableName="rules">
+            <generatedKey column="rule_id" sqlStatement="JDBC" identity="true"/>
+        </table>
+        <table schema="dumb_brms" tableName="rules_mapping"/>
+        <table schema="dumb_brms" tableName="rule_conditions">
+            <generatedKey column="id_condition" sqlStatement="JDBC" identity="true"/>
+            <columnOverride column="value" jdbcType="OTHER" typeHandler="org.dummy.brms.dummy_brms.mybatis.handlers.JsonTypeHandler"/>
+        </table>
+        <table schema="dumb_brms" tableName="rule_workflow">
+            <generatedKey column="id_workflow" sqlStatement="JDBC" identity="true"/>
+        </table>
+
+        <table schema="dumb_brms" tableName="v_rule_full"/>
+
+    </context>
+</generatorConfiguration>
