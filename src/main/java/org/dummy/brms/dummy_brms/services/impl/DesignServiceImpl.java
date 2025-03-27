@@ -1,9 +1,5 @@
 package org.dummy.brms.dummy_brms.services.impl;
 
-import org.postgresql.util.PGobject;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.dummy.brms.dummy_brms.exception.DummyBadRequestException;
 import org.dummy.brms.dummy_brms.exception.DummyGenericException;
@@ -15,6 +11,7 @@ import org.dummy.brms.dummy_brms.mybatis.pojo.*;
 import org.dummy.brms.dummy_brms.services.DesignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -26,6 +23,7 @@ import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 
 @Slf4j
 @Service
+@Transactional
 public class DesignServiceImpl implements DesignService {
 
     @Autowired
@@ -265,6 +263,7 @@ public class DesignServiceImpl implements DesignService {
 
                         RuleDTO ruleDTO = new RuleDTO();
                         ruleDTO.setIdRule(ruleId);
+                        ruleDTO.setFlgActive(group.get(0).getIsActive());
                         ruleDTO.setSalience(group.get(0).getSalience());
                         ruleDTO.setRuleName(group.get(0).getRuleName());
 
@@ -305,7 +304,7 @@ public class DesignServiceImpl implements DesignService {
     }
 
 
-
+    //TODO Fix transactional in same class
     @Override
     public RuleDTO postSingleRuleFull(RuleDTO ruleDTO, Long projectId, UserDTO principal) throws DummyBadRequestException, DummyGenericException {
         if(ruleDTO == null ){
@@ -317,6 +316,8 @@ public class DesignServiceImpl implements DesignService {
             r.setRuleName(ruleDTO.getRuleName());
             r.setSalience(ruleDTO.getSalience());
             r.setProjectId(projectId);
+            if(ruleDTO.getFlgActive() != null)
+                r.setIsActive(ruleDTO.getFlgActive());
             rulesMapper.insertSelective(r);
 
             Long ruleId = r.getRuleId();
@@ -335,8 +336,10 @@ public class DesignServiceImpl implements DesignService {
                     rc.setField(c.getField());
                     rc.setOperator(c.getOperator());
                     rc.setConditionNameId(c.getConditionNameId());
-                    rc.setFlgUseIdConditions(c.isFlgUseIdCondition());
+                    rc.setFlgUseIdConditions(c.getFlgUseIdCondition());
                     rc.setValue(c.getValue());
+                    rc.setReferencedConditionNameId(c.getReferencedConditionNameId());
+                    rc.setSelectedIdConditionField(c.getSelectedIdConditionField());
                     ruleConditionsMapper.insertSelective(rc);
                     c.setIdCondition(rc.getIdCondition());
                     conditionsIds.add(rc.getIdCondition());
@@ -405,6 +408,16 @@ public class DesignServiceImpl implements DesignService {
     public void deleteRulesFull(List<RuleDTO> rules, Long projectId, UserDTO principal) throws DummyGenericException, DummyBadRequestException {
         for(RuleDTO rule: rules){
             this.deleteRuleFull(rule, projectId, principal);
+        }
+    }
+
+    @Override
+    public void activateRuleInProj(RuleDTO ruleDto, Long projectId, UserDTO principal) throws DummyBadRequestException {
+        if(this.isProjectAccessibleByTheCurrentUser(projectId, principal)){
+            Rules rule = new Rules();
+            rule.setIsActive(ruleDto.getFlgActive());
+            rule.setRuleId(ruleDto.getIdRule());
+            rulesMapper.updateByPrimaryKeySelective(rule);
         }
     }
 

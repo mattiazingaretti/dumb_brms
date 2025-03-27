@@ -88,5 +88,12 @@ public class DesignController {
         return designService.updateRulesFull(rulesDto, projectId, (UserDTO) authentication.getPrincipal());
     }
 
+    @PatchMapping(value = "/activateRuleInProj/{projectId}")
+    @PreAuthorize("hasRole('USER')")
+    public void activateRuleInProj(Authentication authentication, @PathVariable Long projectId, @RequestBody RuleDTO ruleDto ) throws  DummyBadRequestException {
+        designService.activateRuleInProj(ruleDto, projectId, (UserDTO) authentication.getPrincipal());
+    }
+
+
 
 }

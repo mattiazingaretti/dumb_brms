@@ -30,15 +30,16 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface VRuleFullMapper extends CommonCountMapper, CommonDeleteMapper, CommonInsertMapper<VRuleFull>, CommonUpdateMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.995568+01:00", comments="Source Table: dumb_brms.v_rule_full")
-    BasicColumn[] selectList = BasicColumn.columnList(ruleId, projectId, ruleName, salience, idCondition, classname, conditionNameId, field, operator, value, flgUseIdConditions, idWorkflow, workflowName, lastUpdateWorkflow);
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    BasicColumn[] selectList = BasicColumn.columnList(ruleId, projectId, ruleName, isActive, salience, idCondition, classname, conditionNameId, field, operator, value, flgUseIdConditions, idWorkflow, workflowName, lastUpdateWorkflow);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="VRuleFullResult", value = {
         @Result(column="rule_id", property="ruleId", jdbcType=JdbcType.BIGINT),
         @Result(column="project_id", property="projectId", jdbcType=JdbcType.BIGINT),
         @Result(column="rule_name", property="ruleName", jdbcType=JdbcType.VARCHAR),
+        @Result(column="is_active", property="isActive", jdbcType=JdbcType.BIT),
         @Result(column="salience", property="salience", jdbcType=JdbcType.INTEGER),
         @Result(column="id_condition", property="idCondition", jdbcType=JdbcType.BIGINT),
         @Result(column="classname", property="classname", jdbcType=JdbcType.VARCHAR),
@@ -53,27 +54,28 @@ public interface VRuleFullMapper extends CommonCountMapper, CommonDeleteMapper, 
     })
     List<VRuleFull> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("VRuleFullResult")
     Optional<VRuleFull> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, VRuleFull, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, VRuleFull, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default int insert(VRuleFull row) {
         return MyBatis3Utils.insert(this::insert, row, VRuleFull, c ->
             c.map(ruleId).toProperty("ruleId")
             .map(projectId).toProperty("projectId")
             .map(ruleName).toProperty("ruleName")
+            .map(isActive).toProperty("isActive")
             .map(salience).toProperty("salience")
             .map(idCondition).toProperty("idCondition")
             .map(classname).toProperty("classname")
@@ -88,12 +90,13 @@ public interface VRuleFullMapper extends CommonCountMapper, CommonDeleteMapper, 
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default int insertMultiple(Collection<VRuleFull> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, VRuleFull, c ->
             c.map(ruleId).toProperty("ruleId")
             .map(projectId).toProperty("projectId")
             .map(ruleName).toProperty("ruleName")
+            .map(isActive).toProperty("isActive")
             .map(salience).toProperty("salience")
             .map(idCondition).toProperty("idCondition")
             .map(classname).toProperty("classname")
@@ -108,12 +111,13 @@ public interface VRuleFullMapper extends CommonCountMapper, CommonDeleteMapper, 
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.9945324+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default int insertSelective(VRuleFull row) {
         return MyBatis3Utils.insert(this::insert, row, VRuleFull, c ->
             c.map(ruleId).toPropertyWhenPresent("ruleId", row::getRuleId)
             .map(projectId).toPropertyWhenPresent("projectId", row::getProjectId)
             .map(ruleName).toPropertyWhenPresent("ruleName", row::getRuleName)
+            .map(isActive).toPropertyWhenPresent("isActive", row::getIsActive)
             .map(salience).toPropertyWhenPresent("salience", row::getSalience)
             .map(idCondition).toPropertyWhenPresent("idCondition", row::getIdCondition)
             .map(classname).toPropertyWhenPresent("classname", row::getClassname)
@@ -128,31 +132,32 @@ public interface VRuleFullMapper extends CommonCountMapper, CommonDeleteMapper, 
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.995568+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default Optional<VRuleFull> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, VRuleFull, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.995568+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default List<VRuleFull> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, VRuleFull, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.995568+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default List<VRuleFull> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, VRuleFull, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.995568+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, VRuleFull, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.995568+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     static UpdateDSL<UpdateModel> updateAllColumns(VRuleFull row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(ruleId).equalTo(row::getRuleId)
                 .set(projectId).equalTo(row::getProjectId)
                 .set(ruleName).equalTo(row::getRuleName)
+                .set(isActive).equalTo(row::getIsActive)
                 .set(salience).equalTo(row::getSalience)
                 .set(idCondition).equalTo(row::getIdCondition)
                 .set(classname).equalTo(row::getClassname)
@@ -166,11 +171,12 @@ public interface VRuleFullMapper extends CommonCountMapper, CommonDeleteMapper, 
                 .set(lastUpdateWorkflow).equalTo(row::getLastUpdateWorkflow);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-25T18:01:57.995568+01:00", comments="Source Table: dumb_brms.v_rule_full")
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", date="2025-03-27T15:17:00.3312229+01:00", comments="Source Table: dumb_brms.v_rule_full")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(VRuleFull row, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(ruleId).equalToWhenPresent(row::getRuleId)
                 .set(projectId).equalToWhenPresent(row::getProjectId)
                 .set(ruleName).equalToWhenPresent(row::getRuleName)
+                .set(isActive).equalToWhenPresent(row::getIsActive)
                 .set(salience).equalToWhenPresent(row::getSalience)
                 .set(idCondition).equalToWhenPresent(row::getIdCondition)
                 .set(classname).equalToWhenPresent(row::getClassname)

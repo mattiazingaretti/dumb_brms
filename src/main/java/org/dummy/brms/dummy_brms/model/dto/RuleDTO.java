@@ -1,6 +1,7 @@
 package org.dummy.brms.dummy_brms.model.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class RuleDTO {
+    private Boolean flgActive;
     private Long idRule;
     private int salience;
     private String ruleName;

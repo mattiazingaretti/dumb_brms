@@ -33,4 +33,6 @@ public interface DesignService {
     List<RuleDTO> updateRulesFull(List<RuleDTO> rules, Long projectId, UserDTO principal) throws DummyGenericException, DummyBadRequestException;
 
     void deleteRulesFull(List<RuleDTO> rules, Long projectId, UserDTO principal) throws DummyGenericException, DummyBadRequestException;
+
+    void activateRuleInProj(RuleDTO ruleDto, Long projectId, UserDTO principal) throws DummyBadRequestException;
 }

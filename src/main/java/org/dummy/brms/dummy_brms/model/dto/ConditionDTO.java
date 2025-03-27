@@ -6,8 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,6 +16,8 @@ public class ConditionDTO {
     private String field;
     private String operator;
     private String conditionNameId;
-    private String value; //TO be JSON serialized
-    private boolean flgUseIdCondition;
+    private String referencedConditionNameId;
+    private String selectedIdConditionField;
+    private String value;
+    private Boolean flgUseIdCondition;
 }

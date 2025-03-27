@@ -43,4 +43,5 @@
         <table schema="dumb_brms" tableName="v_rule_full"/>
 
     </context>
+
 </generatorConfiguration>
